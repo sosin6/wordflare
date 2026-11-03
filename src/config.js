@@ -2,7 +2,7 @@
 export const CONFIG = {
   SITE_URL: 'https://wordflare.app',
   // Umami Cloud website ID (Settings → Websites → Edit → Website ID). Empty = analytics off.
-  UMAMI_WEBSITE_ID: '',
+  UMAMI_WEBSITE_ID: '22ad8ccc-1b77-4086-b5c5-e71141a3da95',
   // Google Apps Script web-app URL that appends waitlist emails to a Google Sheet. Empty = email form hidden.
   LEADS_ENDPOINT: '',
   // Free plan limits
