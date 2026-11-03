@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{pageTitle}} — Wordflare</title>
+<meta name="description" content="{{pageTitle}} — Wordflare">
+<link rel="canonical" href="{{canonical}}">
+{{html.hreflang}}
+<meta name="theme-color" content="#0d0b16">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v={{version}}">
+</head>
+<body class="legal-page">
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="{{home}}"><img src="/favicon.svg" alt="" width="34" height="34"><span>Wordflare</span></a>
+    <a class="btn btn-ghost btn-sm" href="{{home}}">{{legal.back}}</a>
+  </div>
+</header>
+<main class="wrap legal">
+  <h1>{{pageTitle}}</h1>
+  <p class="muted">{{legal.updated}}</p>
+  {{html.body}}
+</main>
+<footer class="foot"><div class="wrap foot-in"><p class="muted small">{{footer.rights}}</p></div></footer>
+<script>window.WF = {{runtimeJson}};</script>
+<script type="module" src="/assets/analytics-boot.js?v={{version}}"></script>
+</body>
+</html>

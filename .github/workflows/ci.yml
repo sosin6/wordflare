@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build
+        run: node scripts/build.mjs
+      - name: Check internal links
+        run: node scripts/check-links.mjs
+      - name: Install Playwright
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: End-to-end tests (desktop + mobile)
+        run: npx playwright test
+      - name: Lighthouse
+        run: npx --yes @lhci/cli@0.14.x autorun
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7

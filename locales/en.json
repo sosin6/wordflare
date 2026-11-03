@@ -1,0 +1,126 @@
+{
+  "lang": "en",
+  "langName": "English",
+  "meta": {
+    "title": "Wordflare — Free animated captions for Reels, TikTok & Shorts",
+    "description": "Add viral, word-by-word animated captions to your videos for free. AI subtitles in any language, right in your browser. No sign-up, no upload, no forced watermark.",
+    "ogAlt": "Wordflare — captions that pop"
+  },
+  "nav": { "how": "How it works", "faq": "FAQ", "language": "Language" },
+  "hero": {
+    "eyebrow": "Free AI caption generator",
+    "title": "Animated captions that make your videos <mark>pop</mark>",
+    "subtitle": "Word-by-word subtitles for Reels, TikTok and Shorts in any language. Free, no sign-up — and your video never leaves your device.",
+    "badges": ["No sign-up", "No upload", "Any language", "No forced watermark"]
+  },
+  "how": {
+    "title": "How it works",
+    "steps": [
+      { "t": "Drop your video", "d": "MP4, MOV or WebM, up to 3 minutes. It stays on your device." },
+      { "t": "AI writes the captions", "d": "Speech is transcribed word by word, in almost any language. Fix any word in one click." },
+      { "t": "Pick a style and export", "d": "Choose a viral style, adjust size and position, and download your video." }
+    ]
+  },
+  "pro": {
+    "title": "Wordflare Pro is coming",
+    "subtitle": "Join the waitlist and get 50% off when it launches.",
+    "items": ["Translate captions into 50+ languages", "Smart placement that never covers faces", "4K export", "Videos longer than 3 minutes", "Caption many videos at once", "Brand kit with your fonts and colors", "Auto emojis & keyword highlights"],
+    "cta": "Get 50% off at launch"
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      { "q": "Is Wordflare really free?", "a": "Yes. Generating, editing and exporting captions is free, with no account and no forced watermark. A small optional wordflare.app tag helps us stay free — you can turn it off." },
+      { "q": "Is my video uploaded anywhere?", "a": "No. The AI runs inside your browser, so your video and audio never leave your device. The first time, your browser downloads the AI model (about 80–150 MB); after that it is cached." },
+      { "q": "Which languages are supported?", "a": "Wordflare detects the spoken language automatically and works with about 99 languages, including English, Spanish, Portuguese, French, German, Hindi, Arabic and Japanese." },
+      { "q": "Can I edit the captions?", "a": "Yes. Click any caption to fix words, add missing ones or delete lines. You can also download an .srt subtitle file." },
+      { "q": "Why is it slow on my phone?", "a": "The AI runs on your own device. Recent computers and phones are fast; older devices take longer. Short clips work best on mobile." },
+      { "q": "What format is the exported video?", "a": "MP4 on most browsers (WebM on some). Export plays your video once in real time while it records, so keep the tab open until it finishes." }
+    ]
+  },
+  "footer": {
+    "tagline": "Captions that pop.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "feedback": "Report a problem / Suggest an idea",
+    "rights": "© 2026 Wordflare"
+  },
+  "legal": {
+    "privacyTitle": "Privacy Policy",
+    "termsTitle": "Terms of Use",
+    "updated": "Last updated: November 3, 2026",
+    "back": "Back to Wordflare"
+  },
+  "app": {
+    "dropTitle": "Drop your video here",
+    "dropSub": "or click to choose a file · MP4, MOV, WebM · up to 3 min",
+    "choose": "Choose video",
+    "multiHint": "Got many videos?",
+    "langLabel": "Spoken language",
+    "langAuto": "Detect automatically",
+    "preparing": "Getting your video ready…",
+    "decoding": "Reading the audio…",
+    "downloading": "Downloading the AI model (first time only)…",
+    "loadingModel": "Starting the AI…",
+    "transcribing": "Writing your captions…",
+    "privacyNote": "Everything happens on your device. Nothing is uploaded.",
+    "cancel": "Cancel",
+    "newVideo": "New video",
+    "tabStyle": "Style",
+    "tabText": "Text",
+    "tabPro": "Pro",
+    "styles": { "pop": "Pop", "box": "Box", "karaoke": "Karaoke", "clean": "Clean", "neon": "Neon" },
+    "color": "Highlight color",
+    "size": "Size",
+    "position": "Position",
+    "top": "Top",
+    "bottom": "Bottom",
+    "wordsPer": "Words per caption",
+    "tag": "Add a small wordflare.app tag (helps us stay free)",
+    "textHint": "Click a caption to edit it. Clear it to delete the line.",
+    "noSpeech": "We couldn't hear any speech in this video. You can still add captions by hand.",
+    "addLine": "+ Add caption here",
+    "export": "Export video",
+    "exportSrt": "Download .srt",
+    "exporting": "Exporting… keep this tab open",
+    "exportDone": "Done! Your video was downloaded.",
+    "exportWebm": "Your browser saved the video as WebM. Most apps accept it; if not, try Chrome or Safari for MP4.",
+    "exportUnsupported": "Your browser can't export video. Please try the latest Chrome, Edge or Safari.",
+    "pro": {
+      "translate": "Translate captions",
+      "translateTo": "Translate to…",
+      "autoplace": "Smart placement (avoid faces)",
+      "export4k": "Export in 4K",
+      "batch": "Caption multiple videos at once",
+      "brandkit": "Save as my brand kit",
+      "emojis": "Auto emojis & keyword highlights",
+      "badge": "PRO"
+    },
+    "door": {
+      "title": "Coming soon with Wordflare Pro",
+      "body": "We're building this right now. Leave your email and get 50% off Wordflare Pro when it launches.",
+      "bodyNoEmail": "We're building this right now. Follow us to know when Wordflare Pro launches.",
+      "emailPh": "you@email.com",
+      "consent": "Email me when Wordflare Pro launches (one email, unsubscribe anytime).",
+      "submit": "Get my 50% off",
+      "thanks": "You're on the list! We'll email you your discount at launch.",
+      "invalid": "Please enter a valid email and tick the box.",
+      "close": "Close",
+      "longvideo": "Videos longer than 3 minutes",
+      "longvideoBody": "Free videos can be up to 3 minutes. Longer videos are coming with Wordflare Pro — leave your email for 50% off.",
+      "follow": "Follow on Instagram"
+    },
+    "feedback": {
+      "title": "Report a problem or suggest an idea",
+      "ph": "What happened, or what would make Wordflare better?",
+      "send": "Send",
+      "thanks": "Thanks! We read every message."
+    },
+    "errors": {
+      "notVideo": "That file doesn't look like a video. Try an MP4, MOV or WebM.",
+      "decode": "We couldn't read the audio from this video. Try exporting it as MP4 first.",
+      "model": "The AI couldn't start on this device. Try the latest Chrome or Edge on a computer.",
+      "generic": "Something went wrong. Please try again."
+    }
+  }
+}

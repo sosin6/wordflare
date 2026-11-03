@@ -1,0 +1,17 @@
+{
+  "name": "wordflare",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Free animated captions for Reels, TikTok & Shorts — right in your browser.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs 4173",
+    "check:links": "node scripts/check-links.mjs",
+    "test": "playwright test",
+    "smoke": "node scripts/smoke-cdp.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

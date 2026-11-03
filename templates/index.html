@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{meta.title}}</title>
+<meta name="description" content="{{meta.description}}">
+<link rel="canonical" href="{{canonical}}">
+{{html.hreflang}}
+<meta name="theme-color" content="#0d0b16">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wordflare">
+<meta property="og:title" content="{{meta.title}}">
+<meta property="og:description" content="{{meta.description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{site}}/og.png">
+<meta property="og:image:alt" content="{{meta.ogAlt}}">
+<meta property="og:locale" content="{{ogLocale}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@wordflare_app">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v={{version}}">
+<script type="application/ld+json">{{html.jsonLd}}</script>
+</head>
+<body>
+<a class="skip" href="#app">Skip to the tool</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="{{home}}" aria-label="Wordflare">
+      <img src="/favicon.svg" alt="" width="34" height="34"><span>Wordflare</span>
+    </a>
+    <nav class="nav">
+      <a href="#how">{{nav.how}}</a>
+      <a href="#faq">{{nav.faq}}</a>
+      <label class="lang-pick">
+        <span class="sr">{{nav.language}}</span>
+        <select id="langSelect" aria-label="{{nav.language}}">{{html.langOptions}}</select>
+      </label>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">{{hero.eyebrow}}</p>
+    <h1>{{hero.title}}</h1>
+    <p class="sub">{{hero.subtitle}}</p>
+    <ul class="badges">{{html.badges}}</ul>
+
+    <div id="app" class="app" data-state="idle">
+      <!-- 1. Drop -->
+      <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="dropSub">
+        <input type="file" id="fileInput" accept="video/*,.mov,.mp4,.webm,.m4v" multiple hidden>
+        <div class="drop-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48"><rect x="6" y="14" width="36" height="22" rx="7" fill="#FFD43B"/><path d="M15 21l4 8 5-7 5 7 4-8" fill="none" stroke="#0d0b16" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="drop-title">{{app.dropTitle}}</p>
+        <p class="drop-sub" id="dropSub">{{app.dropSub}}</p>
+        <span class="btn btn-primary">{{app.choose}}</span>
+      </div>
+      <div class="drop-row">
+        <label class="field-inline">
+          <span>{{app.langLabel}}</span>
+          <select id="spokenLang">{{html.spokenOptions}}</select>
+        </label>
+        <button type="button" class="link-btn" data-door="batch">{{app.multiHint}} <b class="pro-badge">{{app.pro.badge}}</b></button>
+      </div>
+
+      <!-- 2. Busy -->
+      <div class="busy" id="busy" aria-live="polite">
+        <div class="busy-spark" aria-hidden="true"></div>
+        <p class="busy-text" id="busyText">{{app.preparing}}</p>
+        <div class="bar"><div class="bar-fill" id="busyBar"></div></div>
+        <p class="busy-note">{{app.privacyNote}}</p>
+        <button type="button" class="btn btn-ghost" id="cancelBtn">{{app.cancel}}</button>
+      </div>
+
+      <!-- 3. Editor -->
+      <div class="editor" id="editor">
+        <div class="stage">
+          <div class="frame" id="frame">
+            <video id="video" playsinline preload="auto"></video>
+            <canvas id="overlay" aria-hidden="true"></canvas>
+            <button type="button" class="play-big" id="playBig" aria-label="Play"></button>
+          </div>
+          <div class="transport">
+            <button type="button" class="icon-btn" id="playBtn" aria-label="Play / Pause">
+              <svg class="i-play" viewBox="0 0 24 24" width="20" height="20"><path d="M7 5l12 7-12 7z" fill="currentColor"/></svg>
+              <svg class="i-pause" viewBox="0 0 24 24" width="20" height="20"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>
+            </button>
+            <input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek">
+            <span class="time" id="timeLabel">0:00</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" class="tab is-on" data-tab="style">{{app.tabStyle}}</button>
+            <button type="button" role="tab" class="tab" data-tab="text">{{app.tabText}}</button>
+            <button type="button" role="tab" class="tab" data-tab="pro">{{app.tabPro}} <b class="pro-badge">★</b></button>
+          </div>
+
+          <div class="tabpane is-on" data-pane="style">
+            <div class="style-grid" id="styleGrid">{{html.styleButtons}}</div>
+            <div class="ctl">
+              <span class="ctl-label">{{app.color}}</span>
+              <div class="swatches" id="swatches">{{html.swatches}}</div>
+            </div>
+            <label class="ctl">
+              <span class="ctl-label">{{app.size}}</span>
+              <input type="range" id="sizeRange" min="60" max="150" value="100">
+            </label>
+            <label class="ctl">
+              <span class="ctl-label">{{app.position}} <small>{{app.top}} ↔ {{app.bottom}}</small></span>
+              <input type="range" id="posRange" min="10" max="90" value="68">
+            </label>
+            <label class="ctl">
+              <span class="ctl-label">{{app.wordsPer}} <output id="wordsOut">3</output></span>
+              <input type="range" id="wordsRange" min="1" max="6" value="3">
+            </label>
+            <label class="check">
+              <input type="checkbox" id="tagCheck" checked>
+              <span>{{app.tag}}</span>
+            </label>
+          </div>
+
+          <div class="tabpane" data-pane="text">
+            <p class="hint">{{app.textHint}}</p>
+            <p class="hint warn" id="noSpeech" hidden>{{app.noSpeech}}</p>
+            <ol class="lines" id="lines"></ol>
+            <button type="button" class="btn btn-ghost btn-sm" id="addLine">{{app.addLine}}</button>
+          </div>
+
+          <div class="tabpane" data-pane="pro">
+            <div class="pro-list">
+              <div class="pro-item">
+                <span>{{app.pro.translate}}</span>
+                <select data-door-select="translate" aria-label="{{app.pro.translateTo}}">
+                  <option value="">{{app.pro.translateTo}}</option>
+                  {{html.translateOptions}}
+                </select>
+              </div>
+              <button type="button" class="pro-item" data-door="autoplace"><span>{{app.pro.autoplace}}</span><span class="toggle" aria-hidden="true"></span></button>
+              <button type="button" class="pro-item" data-door="emojis"><span>{{app.pro.emojis}}</span><span class="toggle" aria-hidden="true"></span></button>
+              <button type="button" class="pro-item" data-door="brandkit"><span>{{app.pro.brandkit}}</span><b class="pro-badge">{{app.pro.badge}}</b></button>
+              <button type="button" class="pro-item" data-door="batch"><span>{{app.pro.batch}}</span><b class="pro-badge">{{app.pro.badge}}</b></button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <div class="export-row">
+              <button type="button" class="btn btn-primary btn-block" id="exportBtn">{{app.export}}</button>
+              <button type="button" class="btn btn-ghost" data-door="export4k" title="{{app.pro.export4k}}">4K <b class="pro-badge">{{app.pro.badge}}</b></button>
+            </div>
+            <div class="export-prog" id="exportProg" hidden>
+              <p id="exportText">{{app.exporting}}</p>
+              <div class="bar"><div class="bar-fill" id="exportBar"></div></div>
+              <button type="button" class="btn btn-ghost btn-sm" id="exportCancel">{{app.cancel}}</button>
+            </div>
+            <div class="sub-actions">
+              <button type="button" class="link-btn" id="srtBtn">{{app.exportSrt}}</button>
+              <button type="button" class="link-btn" id="newBtn">{{app.newVideo}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="app-error" id="appError" role="alert" hidden></p>
+    </div>
+  </section>
+
+  <section class="how wrap" id="how">
+    <h2>{{how.title}}</h2>
+    <ol class="steps">{{html.steps}}</ol>
+  </section>
+
+  <section class="pro wrap" id="pro">
+    <div class="pro-card">
+      <div>
+        <h2>{{pro.title}}</h2>
+        <p>{{pro.subtitle}}</p>
+        <button type="button" class="btn btn-primary" data-door="pro_list">{{pro.cta}}</button>
+      </div>
+      <ul class="pro-feats">{{html.proItems}}</ul>
+    </div>
+  </section>
+
+  <section class="faq wrap" id="faq">
+    <h2>{{faq.title}}</h2>
+    <div class="faq-list">{{html.faq}}</div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="{{home}}"><img src="/favicon.svg" alt="" width="28" height="28"><span>Wordflare</span></a>
+      <p class="muted">{{footer.tagline}}</p>
+    </div>
+    <nav class="foot-nav">
+      <a href="{{privacyUrl}}">{{footer.privacy}}</a>
+      <a href="{{termsUrl}}">{{footer.terms}}</a>
+      <button type="button" class="link-btn" id="feedbackBtn">{{footer.feedback}}</button>
+      <a href="{{cfg.INSTAGRAM}}" rel="noopener" target="_blank">Instagram</a>
+      <a href="{{cfg.X}}" rel="noopener" target="_blank">X</a>
+    </nav>
+    <p class="muted small">{{footer.rights}}</p>
+  </div>
+</footer>
+
+<dialog id="doorDialog" class="dlg">
+  <form method="dialog" class="dlg-in" id="doorForm" novalidate>
+    <button class="dlg-x" value="close" aria-label="{{app.door.close}}">×</button>
+    <div class="dlg-spark" aria-hidden="true">✦</div>
+    <h3 id="doorTitle">{{app.door.title}}</h3>
+    <p id="doorBody">{{app.door.body}}</p>
+    <div id="doorEmailBox">
+      <input type="email" id="doorEmail" placeholder="{{app.door.emailPh}}" autocomplete="email">
+      <label class="check small"><input type="checkbox" id="doorConsent"><span>{{app.door.consent}}</span></label>
+      <p class="form-err" id="doorErr" hidden>{{app.door.invalid}}</p>
+      <button type="submit" class="btn btn-primary btn-block" id="doorSubmit" value="submit">{{app.door.submit}}</button>
+    </div>
+    <a class="btn btn-ghost btn-block" id="doorFollow" href="{{cfg.INSTAGRAM}}" target="_blank" rel="noopener" hidden>{{app.door.follow}}</a>
+    <p class="dlg-thanks" id="doorThanks" hidden>{{app.door.thanks}}</p>
+  </form>
+</dialog>
+
+<dialog id="feedbackDialog" class="dlg">
+  <form method="dialog" class="dlg-in" id="feedbackForm">
+    <button class="dlg-x" value="close" aria-label="{{app.door.close}}">×</button>
+    <h3>{{app.feedback.title}}</h3>
+    <textarea id="feedbackText" maxlength="500" rows="5" placeholder="{{app.feedback.ph}}"></textarea>
+    <button type="submit" class="btn btn-primary btn-block" value="submit">{{app.feedback.send}}</button>
+    <p class="dlg-thanks" id="feedbackThanks" hidden>{{app.feedback.thanks}}</p>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>window.WF = {{runtimeJson}};</script>
+<script type="module" src="/assets/app.js?v={{version}}"></script>
+</body>
+</html>

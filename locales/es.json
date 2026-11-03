@@ -1,0 +1,126 @@
+{
+  "lang": "es",
+  "langName": "Español",
+  "meta": {
+    "title": "Wordflare — Subtítulos animados gratis para Reels, TikTok y Shorts",
+    "description": "Agregá subtítulos animados palabra por palabra a tus videos, gratis. Subtítulos con IA en cualquier idioma, directo en tu navegador. Sin registro, sin subir el video, sin marca de agua obligatoria.",
+    "ogAlt": "Wordflare — subtítulos que explotan"
+  },
+  "nav": { "how": "Cómo funciona", "faq": "Preguntas", "language": "Idioma" },
+  "hero": {
+    "eyebrow": "Generador de subtítulos con IA gratis",
+    "title": "Subtítulos animados que hacen <mark>explotar</mark> tus videos",
+    "subtitle": "Subtítulos palabra por palabra para Reels, TikTok y Shorts en cualquier idioma. Gratis, sin registro, y tu video nunca sale de tu dispositivo.",
+    "badges": ["Sin registro", "Sin subir nada", "Cualquier idioma", "Sin marca de agua obligatoria"]
+  },
+  "how": {
+    "title": "Cómo funciona",
+    "steps": [
+      { "t": "Soltá tu video", "d": "MP4, MOV o WebM, hasta 3 minutos. Se queda en tu dispositivo." },
+      { "t": "La IA escribe los subtítulos", "d": "Transcribe la voz palabra por palabra, en casi cualquier idioma. Corregí lo que quieras con un clic." },
+      { "t": "Elegí un estilo y descargá", "d": "Elegí un estilo viral, ajustá el tamaño y la posición, y bajá tu video." }
+    ]
+  },
+  "pro": {
+    "title": "Se viene Wordflare Pro",
+    "subtitle": "Sumate a la lista de espera y llevate 50% de descuento en el lanzamiento.",
+    "items": ["Traducir subtítulos a más de 50 idiomas", "Ubicación inteligente que no tapa caras", "Exportar en 4K", "Videos de más de 3 minutos", "Subtitular muchos videos a la vez", "Kit de marca con tus fuentes y colores", "Emojis automáticos y palabras clave resaltadas"],
+    "cta": "Quiero 50% off en el lanzamiento"
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      { "q": "¿Wordflare es gratis de verdad?", "a": "Sí. Generar, editar y exportar subtítulos es gratis, sin cuenta y sin marca de agua obligatoria. Una pequeña etiqueta opcional de wordflare.app nos ayuda a seguir siendo gratis; la podés sacar." },
+      { "q": "¿Se sube mi video a algún lado?", "a": "No. La IA funciona dentro de tu navegador, así que tu video y tu audio nunca salen de tu dispositivo. La primera vez, el navegador descarga el modelo de IA (entre 80 y 150 MB) y después queda guardado." },
+      { "q": "¿Qué idiomas funcionan?", "a": "Wordflare detecta solo el idioma hablado y funciona con unos 99 idiomas, entre ellos español, inglés, portugués, francés, alemán, hindi, árabe y japonés." },
+      { "q": "¿Puedo editar los subtítulos?", "a": "Sí. Tocá cualquier subtítulo para corregir palabras, agregar las que falten o borrar líneas. También podés descargar un archivo .srt." },
+      { "q": "¿Por qué va lento en mi celular?", "a": "La IA corre en tu propio dispositivo. Las computadoras y celulares nuevos van rápido; los más viejos tardan más. En el celular funcionan mejor los videos cortos." },
+      { "q": "¿En qué formato se descarga el video?", "a": "MP4 en la mayoría de los navegadores (WebM en algunos). La exportación reproduce el video una vez en tiempo real mientras graba, así que dejá la pestaña abierta hasta que termine." }
+    ]
+  },
+  "footer": {
+    "tagline": "Subtítulos que explotan.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "feedback": "Reportar un problema / Sugerir una idea",
+    "rights": "© 2026 Wordflare"
+  },
+  "legal": {
+    "privacyTitle": "Política de privacidad",
+    "termsTitle": "Términos de uso",
+    "updated": "Última actualización: 3 de noviembre de 2026",
+    "back": "Volver a Wordflare"
+  },
+  "app": {
+    "dropTitle": "Soltá tu video acá",
+    "dropSub": "o hacé clic para elegir un archivo · MP4, MOV, WebM · hasta 3 min",
+    "choose": "Elegir video",
+    "multiHint": "¿Tenés muchos videos?",
+    "langLabel": "Idioma hablado",
+    "langAuto": "Detectar automáticamente",
+    "preparing": "Preparando tu video…",
+    "decoding": "Leyendo el audio…",
+    "downloading": "Descargando el modelo de IA (solo la primera vez)…",
+    "loadingModel": "Iniciando la IA…",
+    "transcribing": "Escribiendo tus subtítulos…",
+    "privacyNote": "Todo pasa en tu dispositivo. No se sube nada.",
+    "cancel": "Cancelar",
+    "newVideo": "Nuevo video",
+    "tabStyle": "Estilo",
+    "tabText": "Texto",
+    "tabPro": "Pro",
+    "styles": { "pop": "Pop", "box": "Caja", "karaoke": "Karaoke", "clean": "Limpio", "neon": "Neón" },
+    "color": "Color de resaltado",
+    "size": "Tamaño",
+    "position": "Posición",
+    "top": "Arriba",
+    "bottom": "Abajo",
+    "wordsPer": "Palabras por subtítulo",
+    "tag": "Agregar una etiqueta chiquita de wordflare.app (nos ayuda a seguir gratis)",
+    "textHint": "Tocá un subtítulo para editarlo. Vacialo para borrar la línea.",
+    "noSpeech": "No escuchamos voz en este video. Igual podés agregar subtítulos a mano.",
+    "addLine": "+ Agregar subtítulo acá",
+    "export": "Exportar video",
+    "exportSrt": "Descargar .srt",
+    "exporting": "Exportando… dejá esta pestaña abierta",
+    "exportDone": "¡Listo! Tu video se descargó.",
+    "exportWebm": "Tu navegador guardó el video en WebM. La mayoría de las apps lo aceptan; si no, probá con Chrome o Safari para MP4.",
+    "exportUnsupported": "Tu navegador no puede exportar video. Probá con la última versión de Chrome, Edge o Safari.",
+    "pro": {
+      "translate": "Traducir subtítulos",
+      "translateTo": "Traducir a…",
+      "autoplace": "Ubicación inteligente (no tapar caras)",
+      "export4k": "Exportar en 4K",
+      "batch": "Subtitular varios videos a la vez",
+      "brandkit": "Guardar como mi kit de marca",
+      "emojis": "Emojis automáticos y palabras clave resaltadas",
+      "badge": "PRO"
+    },
+    "door": {
+      "title": "Llega pronto con Wordflare Pro",
+      "body": "Lo estamos construyendo ahora mismo. Dejanos tu email y llevate 50% de descuento en Wordflare Pro cuando se lance.",
+      "bodyNoEmail": "Lo estamos construyendo ahora mismo. Seguinos para enterarte cuando se lance Wordflare Pro.",
+      "emailPh": "vos@email.com",
+      "consent": "Avisame por email cuando se lance Wordflare Pro (un solo email, podés darte de baja cuando quieras).",
+      "submit": "Quiero mi 50% off",
+      "thanks": "¡Ya estás en la lista! Te mandamos tu descuento por email en el lanzamiento.",
+      "invalid": "Poné un email válido y marcá la casilla.",
+      "close": "Cerrar",
+      "longvideo": "Videos de más de 3 minutos",
+      "longvideoBody": "Los videos gratis pueden durar hasta 3 minutos. Los videos más largos llegan con Wordflare Pro: dejanos tu email y llevate 50% off.",
+      "follow": "Seguinos en Instagram"
+    },
+    "feedback": {
+      "title": "Reportar un problema o sugerir una idea",
+      "ph": "¿Qué pasó, o qué haría mejor a Wordflare?",
+      "send": "Enviar",
+      "thanks": "¡Gracias! Leemos todos los mensajes."
+    },
+    "errors": {
+      "notVideo": "Ese archivo no parece un video. Probá con un MP4, MOV o WebM.",
+      "decode": "No pudimos leer el audio de este video. Probá exportarlo primero como MP4.",
+      "model": "La IA no pudo arrancar en este dispositivo. Probá con la última versión de Chrome o Edge en una computadora.",
+      "generic": "Algo salió mal. Probá de nuevo."
+    }
+  }
+}

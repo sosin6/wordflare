@@ -1,0 +1,126 @@
+{
+  "lang": "pt",
+  "langName": "Português",
+  "meta": {
+    "title": "Wordflare — Legendas animadas grátis para Reels, TikTok e Shorts",
+    "description": "Coloque legendas animadas palavra por palavra nos seus vídeos, de graça. Legendas com IA em qualquer idioma, direto no navegador. Sem cadastro, sem upload, sem marca d'água obrigatória.",
+    "ogAlt": "Wordflare — legendas que explodem"
+  },
+  "nav": { "how": "Como funciona", "faq": "Perguntas", "language": "Idioma" },
+  "hero": {
+    "eyebrow": "Gerador de legendas com IA grátis",
+    "title": "Legendas animadas que fazem seus vídeos <mark>explodirem</mark>",
+    "subtitle": "Legendas palavra por palavra para Reels, TikTok e Shorts em qualquer idioma. Grátis, sem cadastro — e seu vídeo nunca sai do seu aparelho.",
+    "badges": ["Sem cadastro", "Sem upload", "Qualquer idioma", "Sem marca d'água obrigatória"]
+  },
+  "how": {
+    "title": "Como funciona",
+    "steps": [
+      { "t": "Solte seu vídeo", "d": "MP4, MOV ou WebM, até 3 minutos. Ele fica no seu aparelho." },
+      { "t": "A IA escreve as legendas", "d": "A fala é transcrita palavra por palavra, em quase qualquer idioma. Corrija o que quiser com um clique." },
+      { "t": "Escolha um estilo e baixe", "d": "Escolha um estilo viral, ajuste tamanho e posição e baixe seu vídeo." }
+    ]
+  },
+  "pro": {
+    "title": "O Wordflare Pro está chegando",
+    "subtitle": "Entre na lista de espera e ganhe 50% de desconto no lançamento.",
+    "items": ["Traduzir legendas para mais de 50 idiomas", "Posicionamento inteligente que não cobre rostos", "Exportar em 4K", "Vídeos com mais de 3 minutos", "Legendar vários vídeos de uma vez", "Kit de marca com suas fontes e cores", "Emojis automáticos e palavras-chave destacadas"],
+    "cta": "Quero 50% off no lançamento"
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "items": [
+      { "q": "O Wordflare é grátis mesmo?", "a": "Sim. Gerar, editar e exportar legendas é grátis, sem conta e sem marca d'água obrigatória. Uma pequena etiqueta opcional wordflare.app nos ajuda a continuar grátis — você pode desativá-la." },
+      { "q": "Meu vídeo é enviado para algum lugar?", "a": "Não. A IA roda dentro do seu navegador, então seu vídeo e seu áudio nunca saem do seu aparelho. Na primeira vez, o navegador baixa o modelo de IA (cerca de 80–150 MB); depois ele fica salvo." },
+      { "q": "Quais idiomas funcionam?", "a": "O Wordflare detecta o idioma falado automaticamente e funciona com cerca de 99 idiomas, incluindo português, inglês, espanhol, francês, alemão, hindi, árabe e japonês." },
+      { "q": "Posso editar as legendas?", "a": "Sim. Toque em qualquer legenda para corrigir palavras, adicionar as que faltam ou apagar linhas. Você também pode baixar um arquivo .srt." },
+      { "q": "Por que está lento no meu celular?", "a": "A IA roda no seu próprio aparelho. Computadores e celulares recentes são rápidos; os mais antigos demoram mais. No celular, vídeos curtos funcionam melhor." },
+      { "q": "Em que formato o vídeo é exportado?", "a": "MP4 na maioria dos navegadores (WebM em alguns). A exportação reproduz o vídeo uma vez em tempo real enquanto grava, então mantenha a aba aberta até terminar." }
+    ]
+  },
+  "footer": {
+    "tagline": "Legendas que explodem.",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "feedback": "Relatar um problema / Sugerir uma ideia",
+    "rights": "© 2026 Wordflare"
+  },
+  "legal": {
+    "privacyTitle": "Política de Privacidade",
+    "termsTitle": "Termos de Uso",
+    "updated": "Última atualização: 3 de novembro de 2026",
+    "back": "Voltar ao Wordflare"
+  },
+  "app": {
+    "dropTitle": "Solte seu vídeo aqui",
+    "dropSub": "ou clique para escolher um arquivo · MP4, MOV, WebM · até 3 min",
+    "choose": "Escolher vídeo",
+    "multiHint": "Tem muitos vídeos?",
+    "langLabel": "Idioma falado",
+    "langAuto": "Detectar automaticamente",
+    "preparing": "Preparando seu vídeo…",
+    "decoding": "Lendo o áudio…",
+    "downloading": "Baixando o modelo de IA (só na primeira vez)…",
+    "loadingModel": "Iniciando a IA…",
+    "transcribing": "Escrevendo suas legendas…",
+    "privacyNote": "Tudo acontece no seu aparelho. Nada é enviado.",
+    "cancel": "Cancelar",
+    "newVideo": "Novo vídeo",
+    "tabStyle": "Estilo",
+    "tabText": "Texto",
+    "tabPro": "Pro",
+    "styles": { "pop": "Pop", "box": "Caixa", "karaoke": "Karaokê", "clean": "Limpo", "neon": "Neon" },
+    "color": "Cor de destaque",
+    "size": "Tamanho",
+    "position": "Posição",
+    "top": "Topo",
+    "bottom": "Base",
+    "wordsPer": "Palavras por legenda",
+    "tag": "Adicionar uma pequena etiqueta wordflare.app (nos ajuda a continuar grátis)",
+    "textHint": "Toque em uma legenda para editar. Apague o texto para remover a linha.",
+    "noSpeech": "Não ouvimos fala neste vídeo. Você ainda pode adicionar legendas à mão.",
+    "addLine": "+ Adicionar legenda aqui",
+    "export": "Exportar vídeo",
+    "exportSrt": "Baixar .srt",
+    "exporting": "Exportando… mantenha esta aba aberta",
+    "exportDone": "Pronto! Seu vídeo foi baixado.",
+    "exportWebm": "Seu navegador salvou o vídeo em WebM. A maioria dos apps aceita; se não, use o Chrome ou o Safari para MP4.",
+    "exportUnsupported": "Seu navegador não consegue exportar vídeo. Tente a versão mais recente do Chrome, Edge ou Safari.",
+    "pro": {
+      "translate": "Traduzir legendas",
+      "translateTo": "Traduzir para…",
+      "autoplace": "Posicionamento inteligente (evitar rostos)",
+      "export4k": "Exportar em 4K",
+      "batch": "Legendar vários vídeos de uma vez",
+      "brandkit": "Salvar como meu kit de marca",
+      "emojis": "Emojis automáticos e palavras-chave destacadas",
+      "badge": "PRO"
+    },
+    "door": {
+      "title": "Em breve no Wordflare Pro",
+      "body": "Estamos construindo isso agora. Deixe seu email e ganhe 50% de desconto no Wordflare Pro quando ele for lançado.",
+      "bodyNoEmail": "Estamos construindo isso agora. Siga a gente para saber quando o Wordflare Pro for lançado.",
+      "emailPh": "voce@email.com",
+      "consent": "Me avise por email quando o Wordflare Pro for lançado (um único email, cancele quando quiser).",
+      "submit": "Quero meus 50% off",
+      "thanks": "Você está na lista! Vamos enviar seu desconto por email no lançamento.",
+      "invalid": "Digite um email válido e marque a caixa.",
+      "close": "Fechar",
+      "longvideo": "Vídeos com mais de 3 minutos",
+      "longvideoBody": "Vídeos grátis podem ter até 3 minutos. Vídeos mais longos chegam com o Wordflare Pro — deixe seu email e ganhe 50% off.",
+      "follow": "Siga no Instagram"
+    },
+    "feedback": {
+      "title": "Relatar um problema ou sugerir uma ideia",
+      "ph": "O que aconteceu, ou o que deixaria o Wordflare melhor?",
+      "send": "Enviar",
+      "thanks": "Obrigado! Lemos todas as mensagens."
+    },
+    "errors": {
+      "notVideo": "Esse arquivo não parece um vídeo. Tente MP4, MOV ou WebM.",
+      "decode": "Não conseguimos ler o áudio deste vídeo. Tente exportá-lo como MP4 primeiro.",
+      "model": "A IA não conseguiu iniciar neste aparelho. Tente a versão mais recente do Chrome ou Edge em um computador.",
+      "generic": "Algo deu errado. Tente de novo."
+    }
+  }
+}
