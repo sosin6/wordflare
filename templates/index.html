@@ -47,8 +47,8 @@
 
 <main>
   <section class="hero wrap">
-    <p class="eyebrow">{{hero.eyebrow}}</p>
-    <h1>{{hero.title}}</h1>
+    <h1 class="eyebrow">{{hero.eyebrow}}</h1>
+    <p class="headline">{{hero.title}}</p>
     <p class="sub">{{hero.subtitle}}</p>
     <ul class="badges">{{html.badges}}</ul>
 
@@ -187,6 +187,7 @@
     </div>
   </section>
 
+{{html.extra}}
   <section class="how wrap" id="how">
     <h2>{{how.title}}</h2>
     <ol class="steps">{{html.steps}}</ol>
@@ -218,6 +219,7 @@
     <nav class="foot-nav">
       <a href="{{privacyUrl}}">{{footer.privacy}}</a>
       <a href="{{termsUrl}}">{{footer.terms}}</a>
+      {{html.footLinks}}
       <button type="button" class="link-btn" id="feedbackBtn">{{footer.feedback}}</button>
       <a href="{{cfg.INSTAGRAM}}" rel="noopener" target="_blank">Instagram</a>
       <a href="{{cfg.X}}" rel="noopener" target="_blank">X</a>

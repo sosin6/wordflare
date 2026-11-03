@@ -2,7 +2,7 @@
   "lang": "pt",
   "langName": "Português",
   "meta": {
-    "title": "Wordflare — Legendas animadas grátis para Reels, TikTok e Shorts",
+    "title": "Gerador de legendas grátis com IA — Legendas animadas para Reels e TikTok | Wordflare",
     "description": "Coloque legendas animadas palavra por palavra nos seus vídeos, de graça. Legendas com IA em qualquer idioma, direto no navegador. Sem cadastro, sem upload, sem marca d'água obrigatória.",
     "ogAlt": "Wordflare — legendas que explodem"
   },
@@ -12,7 +12,7 @@
     "language": "Idioma"
   },
   "hero": {
-    "eyebrow": "Gerador de legendas com IA grátis",
+    "eyebrow": "Gerador de legendas grátis com IA",
     "title": "Legendas animadas que fazem seus vídeos <mark>explodirem</mark>",
     "subtitle": "Legendas palavra por palavra para Reels, TikTok e Shorts em qualquer idioma. Grátis, sem cadastro — e seu vídeo nunca sai do seu aparelho.",
     "badges": [
@@ -175,5 +175,10 @@
     "volume": "Volume (só na prévia)",
     "retry": "Transcrever de novo",
     "noAudio": "Não conseguimos ler o áudio deste vídeo. Tente de novo, ou exporte como MP4 no celular/editor e envie outra vez."
+  },
+  "seo": {
+    "uses": "Legendas para cada rede",
+    "tips": "Dicas rápidas",
+    "more": "Mais ferramentas grátis"
   }
 }

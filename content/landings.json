@@ -1,0 +1,250 @@
+{
+  "tiktok": {
+    "en": {
+      "slug": "tiktok-caption-generator",
+      "label": "TikTok caption generator",
+      "title": "Free TikTok Caption Generator — Animated Auto Captions | Wordflare",
+      "description": "Add animated, word-by-word captions to your TikTok videos for free. AI auto captions in any language, right in your browser. No sign-up, no upload.",
+      "eyebrow": "Free TikTok caption generator",
+      "headline": "Auto captions for TikTok that keep people <mark>watching</mark>",
+      "subtitle": "Drop your TikTok, let the AI write every word, pick a viral style and download. Free, no account, and your video never leaves your device.",
+      "sections": [
+        { "h": "Why captions matter on TikTok", "p": "A lot of people scroll with the sound low or off, and many viewers find a video easier to follow when they can read along. Word-by-word captions also give the eye something moving in the first second, which is exactly when people decide whether to keep watching." },
+        { "h": "Keep captions out of the TikTok interface", "p": "TikTok covers the bottom of the screen with your username, description and sound, and the right side with the like, comment and share buttons. Place your captions a bit above the lower area and keep lines short so nothing gets hidden. Wordflare's default position already sits above that zone, and you can move it with the Position slider." },
+        { "h": "The best style for TikTok", "p": "Short, punchy captions work best: two or three words at a time in a bold style like Pop or Box, with one highlight color that stands out from your video. Use Karaoke if you want the full line visible while each word lights up as you speak." }
+      ],
+      "tips": ["Choose 2–3 words per caption", "Use one highlight color that contrasts with your video", "Keep captions above the bottom fifth of the screen", "Fix names and brand words before exporting"],
+      "faq": [
+        { "q": "Does TikTok have its own auto captions?", "a": "Yes, TikTok offers basic auto captions. Wordflare gives you animated, styled captions burned into the video, so they look the same everywhere you post it." },
+        { "q": "What video size should I use for TikTok?", "a": "Vertical 9:16 (for example 1080×1920). Wordflare keeps your original size and aspect ratio when it exports." },
+        { "q": "How long can my TikTok be?", "a": "Free videos can be up to 3 minutes, which covers most TikToks." }
+      ]
+    },
+    "es": {
+      "slug": "subtitulos-para-tiktok",
+      "label": "Subtítulos para TikTok",
+      "title": "Generador de subtítulos para TikTok gratis — Subtítulos animados | Wordflare",
+      "description": "Agregá subtítulos animados palabra por palabra a tus videos de TikTok, gratis. Subtítulos automáticos con IA en cualquier idioma, sin registro y sin subir el video.",
+      "eyebrow": "Generador de subtítulos para TikTok gratis",
+      "headline": "Subtítulos automáticos para TikTok que hacen que te <mark>miren</mark>",
+      "subtitle": "Soltá tu TikTok, la IA escribe cada palabra, elegí un estilo viral y descargalo. Gratis, sin cuenta, y tu video nunca sale de tu dispositivo.",
+      "sections": [
+        { "h": "Por qué los subtítulos importan en TikTok", "p": "Mucha gente mira con el volumen bajo o sin sonido, y a muchos les resulta más fácil seguir un video si pueden leerlo. Los subtítulos palabra por palabra además le dan al ojo algo en movimiento en el primer segundo, que es justo cuando la gente decide si sigue mirando." },
+        { "h": "Que la interfaz de TikTok no tape los subtítulos", "p": "TikTok tapa la parte de abajo con tu usuario, la descripción y el sonido, y el costado derecho con los botones de me gusta, comentarios y compartir. Ubicá los subtítulos un poco más arriba de la zona inferior y usá líneas cortas. La posición por defecto de Wordflare ya queda por encima de esa zona, y la podés mover con el control de Posición." },
+        { "h": "El mejor estilo para TikTok", "p": "Funcionan mejor los subtítulos cortos y con fuerza: dos o tres palabras por vez, en un estilo marcado como Pop o Caja, con un color de resaltado que contraste con tu video. Usá Karaoke si querés que se vea la frase completa mientras se ilumina cada palabra." }
+      ],
+      "tips": ["Elegí 2 o 3 palabras por subtítulo", "Usá un color de resaltado que contraste con el video", "Dejá los subtítulos por encima del quinto inferior de la pantalla", "Corregí nombres y marcas antes de exportar"],
+      "faq": [
+        { "q": "¿TikTok no tiene subtítulos automáticos propios?", "a": "Sí, TikTok tiene subtítulos automáticos básicos. Wordflare te da subtítulos animados y con estilo, integrados en el video, así se ven igual en cualquier red donde lo publiques." },
+        { "q": "¿Qué tamaño de video uso para TikTok?", "a": "Vertical 9:16 (por ejemplo 1080×1920). Wordflare mantiene el tamaño y la proporción originales al exportar." },
+        { "q": "¿Cuánto puede durar mi TikTok?", "a": "Los videos gratis pueden durar hasta 3 minutos, que alcanza para la mayoría de los TikToks." }
+      ]
+    },
+    "pt": {
+      "slug": "legendas-para-tiktok",
+      "label": "Legendas para TikTok",
+      "title": "Gerador de legendas para TikTok grátis — Legendas animadas | Wordflare",
+      "description": "Coloque legendas animadas palavra por palavra nos seus vídeos do TikTok, de graça. Legendas automáticas com IA em qualquer idioma, sem cadastro e sem upload.",
+      "eyebrow": "Gerador de legendas para TikTok grátis",
+      "headline": "Legendas automáticas para TikTok que prendem a <mark>atenção</mark>",
+      "subtitle": "Solte seu TikTok, a IA escreve cada palavra, escolha um estilo viral e baixe. Grátis, sem conta, e seu vídeo nunca sai do seu aparelho.",
+      "sections": [
+        { "h": "Por que legendas importam no TikTok", "p": "Muita gente assiste com o som baixo ou desligado, e muitos acham mais fácil acompanhar um vídeo quando podem ler. Legendas palavra por palavra também dão ao olho algo em movimento no primeiro segundo, que é justamente quando a pessoa decide se continua assistindo." },
+        { "h": "Não deixe a interface do TikTok cobrir as legendas", "p": "O TikTok cobre a parte de baixo com seu usuário, a descrição e o som, e a lateral direita com os botões de curtir, comentar e compartilhar. Posicione as legendas um pouco acima da área inferior e use linhas curtas. A posição padrão do Wordflare já fica acima dessa área, e você pode ajustá-la no controle de Posição." },
+        { "h": "O melhor estilo para TikTok", "p": "Legendas curtas e marcantes funcionam melhor: duas ou três palavras por vez, num estilo forte como Pop ou Caixa, com uma cor de destaque que contraste com o vídeo. Use Karaokê se quiser a frase inteira na tela enquanto cada palavra acende." }
+      ],
+      "tips": ["Escolha 2–3 palavras por legenda", "Use uma cor de destaque que contraste com o vídeo", "Mantenha as legendas acima do quinto inferior da tela", "Corrija nomes e marcas antes de exportar"],
+      "faq": [
+        { "q": "O TikTok não tem legendas automáticas próprias?", "a": "Tem, o TikTok oferece legendas automáticas básicas. O Wordflare dá legendas animadas e estilizadas gravadas no vídeo, então elas aparecem iguais em qualquer rede onde você postar." },
+        { "q": "Que tamanho de vídeo usar no TikTok?", "a": "Vertical 9:16 (por exemplo 1080×1920). O Wordflare mantém o tamanho e a proporção originais ao exportar." },
+        { "q": "Quanto tempo meu TikTok pode ter?", "a": "Vídeos grátis podem ter até 3 minutos, o que cobre a maioria dos TikToks." }
+      ]
+    }
+  },
+  "reels": {
+    "en": {
+      "slug": "instagram-reels-captions",
+      "label": "Instagram Reels captions",
+      "title": "Add Captions to Instagram Reels Free — Animated Subtitles | Wordflare",
+      "description": "Free animated captions for Instagram Reels. AI writes word-by-word subtitles in any language right in your browser. Edit any word and download your Reel.",
+      "eyebrow": "Free captions for Instagram Reels",
+      "headline": "Animated captions for Reels, <mark>ready</mark> in minutes",
+      "subtitle": "Upload your Reel, get word-by-word subtitles from AI, choose a style and export it ready to post. Free and private: nothing is uploaded.",
+      "sections": [
+        { "h": "Burned-in captions vs. Instagram's own", "p": "Instagram can add basic captions, but the style is limited and viewers can turn them off. Burned-in animated captions are part of the video itself, so they always show, they match your brand colors, and the same file works on TikTok and YouTube Shorts too." },
+        { "h": "Where to place captions on a Reel", "p": "The bottom of a Reel is covered by your caption text, username and audio, and the right side by the buttons. Keep captions slightly above the lower part of the screen and avoid covering your face. Use the Position slider to move them, and check by playing the preview." },
+        { "h": "Make your Reel easy to read", "p": "Big, bold words with a dark outline stay readable on any background. Pick two to four words per caption so each one is on screen long enough to read, and use the Text tab to fix names, products or slang the AI didn't catch." }
+      ],
+      "tips": ["Use Pop or Box for talking-head Reels", "2–4 words per caption", "Keep your face and the captions apart with the Position slider", "Export, then upload the file to Instagram as usual"],
+      "faq": [
+        { "q": "Will the captions show if someone has captions turned off?", "a": "Yes. Wordflare burns the captions into the video, so they're always visible." },
+        { "q": "Can I use the same video on TikTok and Shorts?", "a": "Yes. The exported file keeps your original vertical format, so you can post it anywhere." },
+        { "q": "Do I need the Instagram app connected?", "a": "No. Wordflare works in your browser; you just download the video and upload it to Instagram yourself." }
+      ]
+    },
+    "es": {
+      "slug": "subtitulos-para-reels",
+      "label": "Subtítulos para Reels",
+      "title": "Poner subtítulos a Reels de Instagram gratis — Subtítulos animados | Wordflare",
+      "description": "Subtítulos animados gratis para Reels de Instagram. La IA escribe los subtítulos palabra por palabra en cualquier idioma, en tu navegador. Corregí lo que quieras y descargá tu Reel.",
+      "eyebrow": "Subtítulos para Reels de Instagram gratis",
+      "headline": "Subtítulos animados para tus Reels, <mark>listos</mark> en minutos",
+      "subtitle": "Subí tu Reel, la IA escribe los subtítulos palabra por palabra, elegí un estilo y exportalo listo para publicar. Gratis y privado: no se sube nada.",
+      "sections": [
+        { "h": "Subtítulos integrados vs. los de Instagram", "p": "Instagram puede agregar subtítulos básicos, pero el estilo es limitado y el que mira los puede desactivar. Los subtítulos animados integrados son parte del video, así que siempre se ven, combinan con los colores de tu marca y el mismo archivo te sirve para TikTok y YouTube Shorts." },
+        { "h": "Dónde poner los subtítulos en un Reel", "p": "La parte de abajo del Reel la tapan tu descripción, tu usuario y el audio, y el costado derecho los botones. Dejá los subtítulos un poco más arriba de la zona inferior y evitá taparte la cara. Movelos con el control de Posición y revisalo reproduciendo la vista previa." },
+        { "h": "Que tu Reel se lea fácil", "p": "Las palabras grandes y en negrita con borde oscuro se leen sobre cualquier fondo. Elegí de dos a cuatro palabras por subtítulo para que cada una quede el tiempo suficiente, y usá la pestaña Texto para corregir nombres, productos o palabras que la IA no entendió." }
+      ],
+      "tips": ["Usá Pop o Caja para Reels de alguien hablando", "2 a 4 palabras por subtítulo", "Separá tu cara de los subtítulos con el control de Posición", "Exportá y subí el archivo a Instagram como siempre"],
+      "faq": [
+        { "q": "¿Se ven los subtítulos si alguien los tiene desactivados?", "a": "Sí. Wordflare integra los subtítulos en el video, así que siempre se ven." },
+        { "q": "¿Puedo usar el mismo video en TikTok y Shorts?", "a": "Sí. El archivo exportado mantiene tu formato vertical original, así que lo podés publicar en cualquier lado." },
+        { "q": "¿Tengo que conectar mi Instagram?", "a": "No. Wordflare funciona en tu navegador: descargás el video y lo subís vos a Instagram." }
+      ]
+    },
+    "pt": {
+      "slug": "legendas-para-reels",
+      "label": "Legendas para Reels",
+      "title": "Colocar legenda em Reels do Instagram grátis — Legendas animadas | Wordflare",
+      "description": "Legendas animadas grátis para Reels do Instagram. A IA escreve legendas palavra por palavra em qualquer idioma, no seu navegador. Corrija o que quiser e baixe seu Reel.",
+      "eyebrow": "Legendas para Reels do Instagram grátis",
+      "headline": "Legendas animadas para seus Reels, <mark>prontas</mark> em minutos",
+      "subtitle": "Envie seu Reel, a IA escreve as legendas palavra por palavra, escolha um estilo e exporte pronto para postar. Grátis e privado: nada é enviado.",
+      "sections": [
+        { "h": "Legendas gravadas no vídeo vs. as do Instagram", "p": "O Instagram pode adicionar legendas básicas, mas o estilo é limitado e quem assiste pode desativá-las. Legendas animadas gravadas fazem parte do vídeo, então sempre aparecem, combinam com as cores da sua marca e o mesmo arquivo serve para TikTok e YouTube Shorts." },
+        { "h": "Onde colocar as legendas num Reel", "p": "A parte de baixo do Reel é coberta pela descrição, pelo usuário e pelo áudio, e a lateral direita pelos botões. Deixe as legendas um pouco acima da área inferior e evite cobrir seu rosto. Ajuste com o controle de Posição e confira na prévia." },
+        { "h": "Deixe seu Reel fácil de ler", "p": "Palavras grandes, em negrito e com contorno escuro ficam legíveis em qualquer fundo. Escolha de duas a quatro palavras por legenda para cada uma ficar tempo suficiente na tela, e use a aba Texto para corrigir nomes, produtos ou gírias que a IA não entendeu." }
+      ],
+      "tips": ["Use Pop ou Caixa em Reels de alguém falando", "2–4 palavras por legenda", "Separe rosto e legendas com o controle de Posição", "Exporte e envie o arquivo ao Instagram normalmente"],
+      "faq": [
+        { "q": "As legendas aparecem se a pessoa desativou legendas?", "a": "Sim. O Wordflare grava as legendas no vídeo, então elas sempre aparecem." },
+        { "q": "Posso usar o mesmo vídeo no TikTok e no Shorts?", "a": "Sim. O arquivo exportado mantém o formato vertical original, então você pode postar em qualquer lugar." },
+        { "q": "Preciso conectar meu Instagram?", "a": "Não. O Wordflare funciona no navegador: você baixa o vídeo e envia ao Instagram." }
+      ]
+    }
+  },
+  "nowatermark": {
+    "en": {
+      "slug": "free-subtitle-generator-no-watermark",
+      "label": "Free subtitle generator, no watermark",
+      "title": "Free Subtitle Generator — No Watermark, No Sign-up | Wordflare",
+      "description": "Generate subtitles for your videos for free, with no forced watermark and no account. AI auto subtitles in about 99 languages, processed on your own device.",
+      "eyebrow": "Free subtitle generator without watermark",
+      "headline": "A subtitle generator that's <mark>actually</mark> free",
+      "subtitle": "No account, no trial, no forced watermark. The AI runs in your browser, so it costs us nothing to keep it free.",
+      "sections": [
+        { "h": "Why it's free", "p": "Most subtitle tools send your video to their servers, and those servers cost money, so they add watermarks, time limits or subscriptions. Wordflare runs the speech recognition model inside your browser instead. Your device does the work, which is also why your video stays private." },
+        { "h": "About the wordflare.app tag", "p": "By default a small wordflare.app tag appears in the corner of exported videos. It's how we stay free and it never covers your captions, but it's optional: untick it in the Style tab and your video exports with no branding at all." },
+        { "h": "What you get for free", "p": "Automatic word-by-word subtitles, five animated styles, color, size and position controls, one-click editing of any word, an .srt subtitle file and video export. Free videos can be up to 3 minutes long." }
+      ],
+      "tips": ["Untick the tag in the Style tab for a clean export", "Pick the spoken language for the best accuracy", "Download the .srt if you need a subtitle file", "The first run downloads the AI model once"],
+      "faq": [
+        { "q": "Is there a hidden subscription?", "a": "No. There's no account and no payment details, so nothing can be charged. A future Pro plan will add extra features; the free tool stays free." },
+        { "q": "Why is the first run slower?", "a": "Your browser downloads the AI model the first time (about 80–150 MB). After that it's cached and much faster." },
+        { "q": "Which languages work?", "a": "About 99 languages, including English, Spanish, Portuguese, French, German, Hindi, Arabic and Japanese." }
+      ]
+    },
+    "es": {
+      "slug": "generador-de-subtitulos-sin-marca-de-agua",
+      "label": "Subtítulos gratis sin marca de agua",
+      "title": "Generador de subtítulos gratis sin marca de agua ni registro | Wordflare",
+      "description": "Generá subtítulos para tus videos gratis, sin marca de agua obligatoria y sin cuenta. Subtítulos automáticos con IA en unos 99 idiomas, procesados en tu propio dispositivo.",
+      "eyebrow": "Generador de subtítulos gratis sin marca de agua",
+      "headline": "Un generador de subtítulos gratis <mark>de verdad</mark>",
+      "subtitle": "Sin cuenta, sin prueba gratis que vence, sin marca de agua obligatoria. La IA funciona en tu navegador, por eso nos cuesta nada mantenerlo gratis.",
+      "sections": [
+        { "h": "Por qué es gratis", "p": "La mayoría de las herramientas de subtítulos mandan tu video a sus servidores, y esos servidores cuestan plata: por eso ponen marcas de agua, límites de tiempo o suscripciones. Wordflare, en cambio, corre el modelo de reconocimiento de voz dentro de tu navegador. El trabajo lo hace tu dispositivo, y por eso además tu video queda privado." },
+        { "h": "Sobre la etiqueta de wordflare.app", "p": "Por defecto aparece una etiqueta chiquita de wordflare.app en la esquina del video exportado. Es la forma en que seguimos siendo gratis y nunca tapa tus subtítulos, pero es opcional: destildala en la pestaña Estilo y tu video sale sin ninguna marca." },
+        { "h": "Qué tenés gratis", "p": "Subtítulos automáticos palabra por palabra, cinco estilos animados, control de color, tamaño y posición, edición de cualquier palabra con un clic, archivo de subtítulos .srt y exportación del video. Los videos gratis pueden durar hasta 3 minutos." }
+      ],
+      "tips": ["Destildá la etiqueta en la pestaña Estilo para exportar sin marca", "Elegí el idioma hablado para más precisión", "Descargá el .srt si necesitás el archivo de subtítulos", "La primera vez se descarga el modelo de IA una sola vez"],
+      "faq": [
+        { "q": "¿Hay una suscripción escondida?", "a": "No. No hay cuenta ni datos de pago, así que no se te puede cobrar nada. Un futuro plan Pro va a sumar funciones extra; la herramienta gratis sigue gratis." },
+        { "q": "¿Por qué la primera vez tarda más?", "a": "La primera vez tu navegador descarga el modelo de IA (entre 80 y 150 MB). Después queda guardado y va mucho más rápido." },
+        { "q": "¿Qué idiomas funcionan?", "a": "Unos 99 idiomas, entre ellos español, inglés, portugués, francés, alemán, hindi, árabe y japonés." }
+      ]
+    },
+    "pt": {
+      "slug": "gerador-de-legendas-sem-marca-dagua",
+      "label": "Legendas grátis sem marca d'água",
+      "title": "Gerador de legendas grátis sem marca d'água e sem cadastro | Wordflare",
+      "description": "Gere legendas para seus vídeos de graça, sem marca d'água obrigatória e sem conta. Legendas automáticas com IA em cerca de 99 idiomas, processadas no seu próprio aparelho.",
+      "eyebrow": "Gerador de legendas grátis sem marca d'água",
+      "headline": "Um gerador de legendas <mark>grátis</mark> de verdade",
+      "subtitle": "Sem conta, sem teste que expira, sem marca d'água obrigatória. A IA roda no seu navegador, por isso não custa nada mantê-lo grátis.",
+      "sections": [
+        { "h": "Por que é grátis", "p": "A maioria das ferramentas de legenda envia seu vídeo para servidores, e servidores custam dinheiro: por isso colocam marca d'água, limite de tempo ou assinatura. O Wordflare roda o modelo de reconhecimento de fala dentro do seu navegador. Seu aparelho faz o trabalho, e é também por isso que seu vídeo fica privado." },
+        { "h": "Sobre a etiqueta wordflare.app", "p": "Por padrão, uma pequena etiqueta wordflare.app aparece no canto do vídeo exportado. É assim que continuamos grátis e ela nunca cobre suas legendas, mas é opcional: desmarque na aba Estilo e o vídeo sai sem nenhuma marca." },
+        { "h": "O que você tem de graça", "p": "Legendas automáticas palavra por palavra, cinco estilos animados, controle de cor, tamanho e posição, edição de qualquer palavra com um clique, arquivo de legenda .srt e exportação do vídeo. Vídeos grátis podem ter até 3 minutos." }
+      ],
+      "tips": ["Desmarque a etiqueta na aba Estilo para exportar sem marca", "Escolha o idioma falado para mais precisão", "Baixe o .srt se precisar do arquivo de legenda", "Na primeira vez o modelo de IA é baixado uma única vez"],
+      "faq": [
+        { "q": "Existe alguma assinatura escondida?", "a": "Não. Não há conta nem dados de pagamento, então nada pode ser cobrado. Um futuro plano Pro vai trazer recursos extras; a ferramenta grátis continua grátis." },
+        { "q": "Por que a primeira vez demora mais?", "a": "Na primeira vez o navegador baixa o modelo de IA (cerca de 80–150 MB). Depois ele fica salvo e é bem mais rápido." },
+        { "q": "Quais idiomas funcionam?", "a": "Cerca de 99 idiomas, incluindo português, inglês, espanhol, francês, alemão, hindi, árabe e japonês." }
+      ]
+    }
+  },
+  "srt": {
+    "en": {
+      "slug": "srt-subtitle-generator",
+      "label": "SRT subtitle generator",
+      "title": "Free SRT Subtitle Generator — Video to SRT with AI | Wordflare",
+      "description": "Turn any video into an .srt subtitle file for free. AI transcription with timestamps in about 99 languages, right in your browser. Edit the text, then download.",
+      "eyebrow": "Free SRT subtitle generator",
+      "headline": "Turn your video into an <mark>.srt</mark> file in minutes",
+      "subtitle": "The AI transcribes your video with timestamps, you fix anything it got wrong, and you download a standard .srt file. Free, no upload.",
+      "sections": [
+        { "h": "What an SRT file is for", "p": "An .srt file is a plain text file with each subtitle line and its start and end time. You can upload it to YouTube as closed captions, import it into editors like Premiere Pro, DaVinci Resolve or Final Cut, or keep it as a transcript of your video." },
+        { "h": "How to get a clean SRT", "p": "Pick the spoken language before you start for the best accuracy. When the captions appear, open the Text tab and fix names, numbers or technical words. For YouTube-style subtitles, set Words per caption to 5 or 6 so each line reads as a full phrase, then click Download .srt." },
+        { "h": "Captions burned in, or as a file", "p": "Need both? Export the video with animated captions for TikTok or Reels, and download the .srt for YouTube or your editor. Both come from the same edited transcript." }
+      ],
+      "tips": ["Choose the spoken language first", "Use 5–6 words per caption for YouTube", "Fix the text before downloading", "The .srt works in YouTube, Premiere and DaVinci Resolve"],
+      "faq": [
+        { "q": "Is the SRT file free?", "a": "Yes, downloading the .srt is free with no account." },
+        { "q": "Can I upload the SRT to YouTube?", "a": "Yes. In YouTube Studio, open the video's Subtitles section and upload the .srt file with timing." },
+        { "q": "How long can the video be?", "a": "Free videos can be up to 3 minutes." }
+      ]
+    },
+    "es": {
+      "slug": "generar-subtitulos-srt",
+      "label": "Generar subtítulos .srt",
+      "title": "Generar subtítulos SRT gratis — De video a SRT con IA | Wordflare",
+      "description": "Convertí cualquier video en un archivo de subtítulos .srt gratis. Transcripción con IA y tiempos en unos 99 idiomas, en tu navegador. Corregí el texto y descargalo.",
+      "eyebrow": "Generador de subtítulos SRT gratis",
+      "headline": "Convertí tu video en un archivo <mark>.srt</mark> en minutos",
+      "subtitle": "La IA transcribe tu video con los tiempos, corregís lo que haga falta y descargás un archivo .srt estándar. Gratis y sin subir nada.",
+      "sections": [
+        { "h": "Para qué sirve un archivo SRT", "p": "Un .srt es un archivo de texto con cada línea de subtítulo y su tiempo de inicio y fin. Lo podés subir a YouTube como subtítulos, importarlo en editores como Premiere Pro, DaVinci Resolve o Final Cut, o guardarlo como transcripción de tu video." },
+        { "h": "Cómo sacar un SRT prolijo", "p": "Elegí el idioma hablado antes de empezar para más precisión. Cuando aparezcan los subtítulos, abrí la pestaña Texto y corregí nombres, números o palabras técnicas. Para subtítulos tipo YouTube, poné 5 o 6 palabras por subtítulo así cada línea es una frase completa, y tocá Descargar .srt." },
+        { "h": "Subtítulos en el video o en archivo", "p": "¿Necesitás las dos cosas? Exportá el video con subtítulos animados para TikTok o Reels y descargá el .srt para YouTube o tu editor. Los dos salen de la misma transcripción corregida." }
+      ],
+      "tips": ["Elegí primero el idioma hablado", "Usá 5 o 6 palabras por subtítulo para YouTube", "Corregí el texto antes de descargar", "El .srt funciona en YouTube, Premiere y DaVinci Resolve"],
+      "faq": [
+        { "q": "¿El archivo SRT es gratis?", "a": "Sí, descargar el .srt es gratis y sin cuenta." },
+        { "q": "¿Puedo subir el SRT a YouTube?", "a": "Sí. En YouTube Studio, entrá a la sección Subtítulos del video y subí el archivo .srt con tiempos." },
+        { "q": "¿Cuánto puede durar el video?", "a": "Los videos gratis pueden durar hasta 3 minutos." }
+      ]
+    },
+    "pt": {
+      "slug": "gerar-legendas-srt",
+      "label": "Gerar legendas .srt",
+      "title": "Gerar legendas SRT grátis — De vídeo para SRT com IA | Wordflare",
+      "description": "Transforme qualquer vídeo num arquivo de legenda .srt de graça. Transcrição com IA e tempos em cerca de 99 idiomas, no navegador. Corrija o texto e baixe.",
+      "eyebrow": "Gerador de legendas SRT grátis",
+      "headline": "Transforme seu vídeo num arquivo <mark>.srt</mark> em minutos",
+      "subtitle": "A IA transcreve seu vídeo com os tempos, você corrige o que precisar e baixa um arquivo .srt padrão. Grátis, sem upload.",
+      "sections": [
+        { "h": "Para que serve um arquivo SRT", "p": "Um .srt é um arquivo de texto com cada linha de legenda e seus tempos de início e fim. Você pode enviá-lo ao YouTube como legenda, importá-lo em editores como Premiere Pro, DaVinci Resolve ou Final Cut, ou guardá-lo como transcrição do vídeo." },
+        { "h": "Como conseguir um SRT limpo", "p": "Escolha o idioma falado antes de começar para mais precisão. Quando as legendas aparecerem, abra a aba Texto e corrija nomes, números ou termos técnicos. Para legendas no estilo YouTube, use 5 ou 6 palavras por legenda para cada linha virar uma frase completa e clique em Baixar .srt." },
+        { "h": "Legenda gravada no vídeo ou em arquivo", "p": "Precisa dos dois? Exporte o vídeo com legendas animadas para TikTok ou Reels e baixe o .srt para o YouTube ou seu editor. Os dois saem da mesma transcrição corrigida." }
+      ],
+      "tips": ["Escolha primeiro o idioma falado", "Use 5–6 palavras por legenda para o YouTube", "Corrija o texto antes de baixar", "O .srt funciona no YouTube, Premiere e DaVinci Resolve"],
+      "faq": [
+        { "q": "O arquivo SRT é grátis?", "a": "Sim, baixar o .srt é grátis e sem conta." },
+        { "q": "Posso enviar o SRT ao YouTube?", "a": "Sim. No YouTube Studio, abra a seção Legendas do vídeo e envie o arquivo .srt com tempos." },
+        { "q": "Quanto tempo o vídeo pode ter?", "a": "Vídeos grátis podem ter até 3 minutos." }
+      ]
+    }
+  }
+}

@@ -59,13 +59,15 @@ const results = [];
 const check = (name, ok, extra = '') => { results.push({ name, ok }); console.log(`${ok ? 'PASS' : 'FAIL'}  ${name} ${extra}`); };
 
 // 1. pages load in every language, no errors
-for (const p of ['/', '/es/', '/pt/', '/privacy/', '/es/terms/', '/pt/privacy/']) {
+for (const p of ['/', '/es/', '/pt/', '/privacy/', '/es/terms/', '/pt/privacy/', '/tiktok-caption-generator/', '/es/subtitulos-para-reels/', '/pt/gerar-legendas-srt/']) {
   const before = errors.length;
   await nav(`http://localhost:${PORT}${p}?e2e=1`);
   await sleep(300);
   const lang = await evalJs('document.documentElement.lang');
   check(`load ${p} (lang=${lang})`, errors.length === before, errors.slice(before).join(' | '));
 }
+check('landing h1 is keyword', await evalJs(`(async()=>{const h=await (await fetch('/es/subtitulos-para-tiktok/')).text();return h.includes('<h1 class="eyebrow">Generador de subtítulos para TikTok gratis</h1>') && h.includes('hreflang="pt" href="https://wordflare.app/pt/legendas-para-tiktok/"')})()`));
+check('sitemap lists landings', await evalJs(`(async()=>{const x=await (await fetch('/sitemap.xml')).text();return (x.match(/<loc>/g)||[]).length===21 && x.includes('/es/generar-subtitulos-srt/')})()`));
 check('es page has no English hero', await evalJs(`(async()=>{const r=await fetch('/es/');const h=await r.text();return !h.includes('Animated captions that make')})()`));
 
 // 2. full flow (desktop)

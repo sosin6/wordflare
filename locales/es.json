@@ -2,7 +2,7 @@
   "lang": "es",
   "langName": "Español",
   "meta": {
-    "title": "Wordflare — Subtítulos animados gratis para Reels, TikTok y Shorts",
+    "title": "Generador de subtítulos gratis con IA — Subtítulos animados para Reels y TikTok | Wordflare",
     "description": "Agregá subtítulos animados palabra por palabra a tus videos, gratis. Subtítulos con IA en cualquier idioma, directo en tu navegador. Sin registro, sin subir el video, sin marca de agua obligatoria.",
     "ogAlt": "Wordflare — subtítulos que explotan"
   },
@@ -12,7 +12,7 @@
     "language": "Idioma"
   },
   "hero": {
-    "eyebrow": "Generador de subtítulos con IA gratis",
+    "eyebrow": "Generador de subtítulos gratis con IA",
     "title": "Subtítulos animados que hacen <mark>explotar</mark> tus videos",
     "subtitle": "Subtítulos palabra por palabra para Reels, TikTok y Shorts en cualquier idioma. Gratis, sin registro, y tu video nunca sale de tu dispositivo.",
     "badges": [
@@ -175,5 +175,10 @@
     "volume": "Volumen (solo vista previa)",
     "retry": "Transcribir de nuevo",
     "noAudio": "No pudimos leer el audio de este video. Probá de nuevo, o exportalo como MP4 desde tu celular o editor y volvé a subirlo."
+  },
+  "seo": {
+    "uses": "Subtítulos para cada red",
+    "tips": "Tips rápidos",
+    "more": "Más herramientas gratis"
   }
 }

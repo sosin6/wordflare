@@ -2,7 +2,7 @@
   "lang": "en",
   "langName": "English",
   "meta": {
-    "title": "Wordflare — Free animated captions for Reels, TikTok & Shorts",
+    "title": "Wordflare — Free AI Subtitle Generator & Animated Captions for Reels, TikTok",
     "description": "Add viral, word-by-word animated captions to your videos for free. AI subtitles in any language, right in your browser. No sign-up, no upload, no forced watermark.",
     "ogAlt": "Wordflare — captions that pop"
   },
@@ -12,7 +12,7 @@
     "language": "Language"
   },
   "hero": {
-    "eyebrow": "Free AI caption generator",
+    "eyebrow": "Free AI subtitle generator",
     "title": "Animated captions that make your videos <mark>pop</mark>",
     "subtitle": "Word-by-word subtitles for Reels, TikTok and Shorts in any language. Free, no sign-up — and your video never leaves your device.",
     "badges": [
@@ -175,5 +175,10 @@
     "volume": "Volume (preview only)",
     "retry": "Transcribe again",
     "noAudio": "We couldn't read the audio of this video. Try again, or export it as MP4 from your phone/editor and upload it again."
+  },
+  "seo": {
+    "uses": "Subtitles for every platform",
+    "tips": "Quick tips",
+    "more": "More free tools"
   }
 }
