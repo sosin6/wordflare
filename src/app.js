@@ -93,7 +93,9 @@ async function start(file, langOverride) {
   setBusy(t.decoding, 0.04, true);
   try {
     audio = await decodeAudio(file);
+    state.debugAudio = { samples: audio.length, seconds: +(audio.length / 16000).toFixed(1) };
   } catch (err) {
+    state.debugAudio = { error: `${err?.name}: ${err?.message}` };
     reportError('audio_decode', err);
     track('audio_decode_failed', { type: file.type || file.name.split('.').pop(), err: `${err?.name}: ${err?.message}`.slice(0, 150) });
     audio = null; // no audio track or unsupported codec → captions by hand
@@ -157,6 +159,7 @@ function runWhisper(audio, language) {
     setBusy(t.loadingModel, 0.06, true);
     worker.onmessage = (e) => {
       const m = e.data;
+      if (m.type === 'debug') { (state.debug ||= []).push(m); return; }
       if (m.type === 'download') setBusy(t.downloading, 0.06 + m.progress * 0.54);
       else if (m.type === 'loading') setBusy(t.loadingModel, 0.62, true);
       else if (m.type === 'transcribe') setBusy(t.transcribing, 0.64 + m.progress * 0.36);
@@ -499,7 +502,7 @@ function resetMedia() {
   video.pause();
   if (state.url) { URL.revokeObjectURL(state.url); state.url = null; }
   video.removeAttribute('src'); video.load();
-  state.chunks = []; state.edited = false; state.device = null;
+  state.chunks = []; state.edited = false; state.device = null; state.debug = []; state.debugAudio = null;
   app.classList.remove('is-playing');
 }
 function fail(message) { toIdle(); showError(message); }

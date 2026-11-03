@@ -88,10 +88,11 @@ function roundRect(ctx, x, y, w, h, r) {
  */
 export function drawCaptions(ctx, W, H, t, chunks, opts) {
   const def = STYLE_DEFS[opts.style] || STYLE_DEFS.pop;
-  const base = Math.min(W, H * 0.5625) * 0.075 * opts.size;
-  const fs = Math.max(12, Math.round(base));
+  const unit = Math.min(W, H * 0.5625) * 0.075;
+  const fs = Math.max(12, Math.round(unit * opts.size));
 
-  if (opts.tag) drawTag(ctx, W, H, fs);
+  // The tag keeps a fixed size: only the captions follow the size slider.
+  if (opts.tag) drawTag(ctx, W, H, Math.round(unit));
 
   const chunk = activeChunk(chunks, t);
   if (!chunk) return;

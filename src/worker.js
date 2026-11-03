@@ -65,10 +65,11 @@ async function transcribe(audio, language) {
     const seg = audio.subarray(i, Math.min(audio.length, i + LEN));
     const offset = i / SR;
     self.postMessage({ type: 'transcribe', progress: k / total });
-    if (seg.length < SR * 0.3 || rms(seg) < 0.001) { if (i + LEN >= audio.length) break; continue; }
+    if (seg.length < SR * 0.3 || rms(seg) < 0.001) { self.postMessage({ type: 'debug', seg: k, skipped: true, rms: +rms(seg).toFixed(4) }); if (i + LEN >= audio.length) break; continue; }
     const opts = { return_timestamps: 'word', task: 'transcribe' };
     if (language) opts.language = language;
     const out = await asr(seg, opts);
+    self.postMessage({ type: 'debug', seg: k, offset, rms: +rms(seg).toFixed(4), chunks: out?.chunks?.length ?? -1, text: String(out?.text || '').slice(0, 120) });
     for (const c of out?.chunks || []) {
       const text = (c.text || '').trim();
       if (!text || !c.timestamp) continue;
