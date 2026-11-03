@@ -3,6 +3,7 @@ let asr = null;
 let device = null;
 let cancelled = false;
 const files = new Map();
+let maxProgress = 0;
 
 async function hasWebGPU() {
   try {
@@ -17,7 +18,11 @@ function onProgress(p) {
     files.set(p.file, { loaded: p.loaded || 0, total: p.total || 0 });
     let loaded = 0, total = 0;
     for (const f of files.values()) { loaded += f.loaded; total += f.total; }
-    if (total > 0) self.postMessage({ type: 'download', progress: loaded / total });
+    // New files keep appearing while downloading, so never let the bar go backwards.
+    if (total > 0) {
+      maxProgress = Math.max(maxProgress, Math.min(0.99, loaded / total) * Math.min(1, files.size / 4));
+      self.postMessage({ type: 'download', progress: maxProgress });
+    }
   } else if (p.status === 'ready') {
     self.postMessage({ type: 'loading' });
   }
