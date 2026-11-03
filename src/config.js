@@ -4,7 +4,7 @@ export const CONFIG = {
   // Umami Cloud website ID (Settings → Websites → Edit → Website ID). Empty = analytics off.
   UMAMI_WEBSITE_ID: '22ad8ccc-1b77-4086-b5c5-e71141a3da95',
   // Google Apps Script web-app URL that appends waitlist emails to a Google Sheet. Empty = email form hidden.
-  LEADS_ENDPOINT: '',
+  LEADS_ENDPOINT: 'https://script.google.com/macros/s/AKfycbycBGKxgB4n-w0d-rayK3ImE1gICCPv7IuDGRz3lv9QXnATDBWQSG2dapsHO0ww8XtF/exec',
   // Free plan limits
   MAX_SECONDS: 180,
   // Whisper model (word timestamps). Runs fully in the browser.

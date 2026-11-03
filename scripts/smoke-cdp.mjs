@@ -97,7 +97,7 @@ check('re-chunk keeps edited words', await evalJs(`window.__wf.state.chunks.flat
 // fake doors
 await evalJs(`document.querySelector('.tab[data-tab="pro"]').click(); document.querySelector('[data-door="autoplace"]').click()`);
 check('fake door dialog opens', await evalJs(`document.getElementById('doorDialog').open`));
-check('no email form without endpoint', await evalJs(`getComputedStyle(document.getElementById('doorEmailBox')).display === 'none'`));
+check('email form visible with endpoint', await evalJs(`getComputedStyle(document.getElementById('doorEmailBox')).display !== 'none'`));
 check('fake door tracked', logs.some((l) => l.includes('fake_door_autoplace')));
 await evalJs(`document.getElementById('doorDialog').close()`);
 await evalJs(`(()=>{const s=document.querySelector('[data-door-select="translate"]'); s.value='fr'; s.dispatchEvent(new Event('change',{bubbles:true}));})()`);
