@@ -31,10 +31,9 @@ export function initDoors(t) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || !consent) { $('doorErr').hidden = false; return; }
     $('doorErr').hidden = true;
     $('doorSubmit').disabled = true;
-    try {
-      const body = new URLSearchParams({ email, feature: current?.feature || '', lang: window.WF.lang, ts: new Date().toISOString(), page: location.pathname });
-      await fetch(CONFIG.LEADS_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
-    } catch {}
+    // Google Apps Script answers slowly: send in the background (keepalive survives closing the tab).
+    const body = new URLSearchParams({ email, feature: current?.feature || '', lang: window.WF.lang, ts: new Date().toISOString(), page: location.pathname });
+    fetch(CONFIG.LEADS_ENDPOINT, { method: 'POST', mode: 'no-cors', body, keepalive: true }).catch(() => track('lead_send_error'));
     track(`fake_door_email_${current?.feature || 'unknown'}`, { lang: window.WF.lang });
     joined.add(current?.feature || 'any');
     safeSet('wf_waitlist', JSON.stringify([...joined]));
