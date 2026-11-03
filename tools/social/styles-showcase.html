@@ -1,0 +1,70 @@
+<!doctype html><meta charset="utf-8">
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+import { drawCaptions } from './captions.js';
+const c = document.getElementById('c'), ctx = c.getContext('2d');
+const W = 1080, H = 1920, FPS = 30;
+const scenes = [
+  { style: 'pop',     color: '#FFD43B', label: 'Pop',     text: 'Your videos deserve captions that pop' },
+  { style: 'box',     color: '#FFD43B', label: 'Box',     text: 'Every word lights up as you speak' },
+  { style: 'karaoke', color: '#FF5C8A', label: 'Karaoke', text: 'Works in almost any language' },
+  { style: 'neon',    color: '#38BDF8', label: 'Neon',    text: 'No sign up and no upload' },
+  { style: 'clean',   color: '#FFFFFF', label: 'Clean',   text: 'Free right in your browser' },
+];
+const SCENE = 3.0;
+function wordsFor(text, t0) {
+  const ws = text.split(' '); const step = 0.36;
+  return ws.map((w, i) => ({ text: w, start: t0 + 0.15 + i * step, end: t0 + 0.15 + (i + 1) * step - 0.02 }));
+}
+function chunks(words, n = 3) { const out = []; for (let i = 0; i < words.length; i += n) { const g = words.slice(i, i + n); out.push({ words: g, start: g[0].start, end: g[g.length - 1].end }); } return out; }
+const all = scenes.map((s, i) => ({ ...s, chunks: chunks(wordsFor(s.text, i * SCENE)) }));
+const TOTAL = scenes.length * SCENE + 2.2;
+window.TOTAL_FRAMES = Math.round(TOTAL * FPS);
+function bg() {
+  const g = ctx.createRadialGradient(W/2, H*0.42, 50, W/2, H*0.42, H*0.8);
+  g.addColorStop(0, '#2a1f4d'); g.addColorStop(1, '#0d0b16'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+}
+function header(t) {
+  ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = '#fff';
+  ctx.font = "900 96px 'Inter'"; ctx.fillText('5 caption styles', W/2, 330);
+  ctx.fillStyle = '#c9bff2'; ctx.font = "600 52px 'Inter'"; ctx.fillText('Free · No sign-up · Any language', W/2, 420);
+  ctx.restore();
+}
+function phone(sc, t, localT) {
+  // video-like card
+  const x = 150, y = 560, w = 780, h = 900;
+  ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, w, h, 48); ctx.clip();
+  const g = ctx.createLinearGradient(x, y, x + w, y + h); g.addColorStop(0, '#3b4a5e'); g.addColorStop(1, '#1d2533');
+  ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
+  // simple "speaker" silhouette
+  ctx.fillStyle = 'rgba(255,255,255,.10)'; ctx.beginPath(); ctx.arc(x + w/2, y + 330, 120, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(x + w/2 - 230, y + 480, 460, 500, 200); ctx.fill();
+  ctx.translate(x, y);
+  drawCaptions(ctx, w, h, t, sc.chunks, { style: sc.style, color: sc.color, size: 1.15, pos: 0.7, tag: false });
+  ctx.restore();
+  // style label pill
+  ctx.save(); ctx.font = "800 46px 'Inter'"; const lw = ctx.measureText(sc.label).width + 70;
+  ctx.fillStyle = '#FFD43B'; ctx.beginPath(); ctx.roundRect(W/2 - lw/2, 1510, lw, 80, 40); ctx.fill();
+  ctx.fillStyle = '#0d0b16'; ctx.textAlign = 'center'; ctx.fillText(sc.label, W/2, 1566); ctx.restore();
+}
+function outro(p) {
+  ctx.save(); ctx.globalAlpha = Math.min(1, p * 3); ctx.textAlign = 'center';
+  ctx.save(); ctx.translate(W/2, 860); ctx.rotate(-0.08);
+  ctx.fillStyle = '#FFD43B'; ctx.beginPath(); ctx.roundRect(-300, -120, 600, 220, 48); ctx.fill();
+  ctx.strokeStyle = '#0d0b16'; ctx.lineWidth = 34; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(-170, -50); ctx.lineTo(-85, 60); ctx.lineTo(0, -35); ctx.lineTo(85, 60); ctx.lineTo(170, -50); ctx.stroke();
+  ctx.restore();
+  ctx.fillStyle = '#fff'; ctx.font = "900 120px 'Inter'"; ctx.fillText('wordflare.app', W/2, 1180);
+  ctx.fillStyle = '#c9bff2'; ctx.font = "600 54px 'Inter'"; ctx.fillText('Try it free in your browser', W/2, 1280);
+  ctx.restore();
+}
+window.renderFrame = (i) => {
+  const t = i / FPS; bg();
+  const k = Math.floor(t / SCENE);
+  if (k < scenes.length) { header(t); phone(all[k], t, t - k * SCENE); }
+  else outro((t - scenes.length * SCENE) / 2.2);
+  return c.toDataURL('image/jpeg', 0.9);
+};
+await document.fonts.load("900 40px 'Inter'"); await document.fonts.load("800 40px 'Inter'"); await document.fonts.load("600 40px 'Inter'");
+window.READY = true;
+</script>
