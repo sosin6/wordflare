@@ -55,24 +55,48 @@ function rms(arr) {
   return Math.sqrt(s / Math.max(1, arr.length / 4));
 }
 
-async function transcribe(audio, language) {
+// Whisper sometimes ignores auto-detection and answers "[Speaking in Spanish]" or
+// "(speaking in foreign language)" instead of transcribing. Detect that and recover.
+const isNote = (text) => /^\s*[\[(♪*].*[\])♪*]\s*$/.test(text || '');
+const spokenIn = (text) => (String(text || '').match(/speaking in ([a-z]+)/i)?.[1] || '').toLowerCase();
+
+async function runSegment(seg, language) {
+  const opts = { return_timestamps: 'word', task: 'transcribe' };
+  if (language) opts.language = language;
+  return asr(seg, opts);
+}
+
+async function transcribe(audio, language, hint) {
   const SR = 16000, LEN = 30 * SR, STEP = 27 * SR;
   const words = [];
   const total = Math.max(1, Math.ceil(Math.max(0, audio.length - (LEN - STEP)) / STEP));
   let lastEnd = -1;
+  let lang = language || null;
+  let detected = !!language;
   for (let i = 0, k = 0; i < audio.length; i += STEP, k++) {
     if (cancelled) return null;
     const seg = audio.subarray(i, Math.min(audio.length, i + LEN));
     const offset = i / SR;
     self.postMessage({ type: 'transcribe', progress: k / total });
     if (seg.length < SR * 0.3 || rms(seg) < 0.001) { self.postMessage({ type: 'debug', seg: k, skipped: true, rms: +rms(seg).toFixed(4) }); if (i + LEN >= audio.length) break; continue; }
-    const opts = { return_timestamps: 'word', task: 'transcribe' };
-    if (language) opts.language = language;
-    const out = await asr(seg, opts);
-    self.postMessage({ type: 'debug', seg: k, offset, rms: +rms(seg).toFixed(4), chunks: out?.chunks?.length ?? -1, text: String(out?.text || '').slice(0, 120) });
+    let out = await runSegment(seg, lang);
+    self.postMessage({ type: 'debug', seg: k, offset, lang, rms: +rms(seg).toFixed(4), chunks: out?.chunks?.length ?? -1, text: String(out?.text || '').slice(0, 120) });
+    if (!detected && isNote(out?.text)) {
+      // Auto-detect failed: use the language Whisper named, else the visitor's language.
+      const candidates = [spokenIn(out.text), hint, 'english'].filter(Boolean);
+      for (const cand of candidates) {
+        try {
+          const retry = await runSegment(seg, cand);
+          self.postMessage({ type: 'debug', seg: k, retryLang: cand, chunks: retry?.chunks?.length ?? -1, text: String(retry?.text || '').slice(0, 120) });
+          if (!isNote(retry?.text) && retry?.chunks?.length) { out = retry; lang = cand; break; }
+        } catch (e) { self.postMessage({ type: 'debug', seg: k, retryLang: cand, error: String(e?.message || e).slice(0, 120) }); }
+      }
+      self.postMessage({ type: 'language', language: lang });
+    }
+    if (!isNote(out?.text)) detected = true;
     for (const c of out?.chunks || []) {
       const text = (c.text || '').trim();
-      if (!text || !c.timestamp) continue;
+      if (!text || !c.timestamp || isNote(text)) continue;
       const start = (c.timestamp[0] ?? 0) + offset;
       const end = (c.timestamp[1] ?? c.timestamp[0] + 0.3) + offset;
       if (start < lastEnd - 0.1) continue; // overlap between windows
@@ -82,7 +106,7 @@ async function transcribe(audio, language) {
     if (i + LEN >= audio.length) break;
   }
   self.postMessage({ type: 'transcribe', progress: 1 });
-  return words;
+  return { words, language: lang };
 }
 
 self.onmessage = async (e) => {
@@ -93,8 +117,8 @@ self.onmessage = async (e) => {
   try {
     await load(msg.modelId, msg.libUrl);
     self.postMessage({ type: 'loading' });
-    const words = await transcribe(msg.audio, msg.language);
-    if (words) self.postMessage({ type: 'result', words, device });
+    const res = await transcribe(msg.audio, msg.language, msg.hint);
+    if (res) self.postMessage({ type: 'result', words: res.words, language: res.language, device });
   } catch (err) {
     self.postMessage({ type: 'error', stage: asr ? 'transcribe' : 'model', message: String(err?.message || err).slice(0, 200) });
   }

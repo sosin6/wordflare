@@ -42,6 +42,24 @@ $('feedbackForm').addEventListener('submit', (e) => {
   setTimeout(() => $('feedbackDialog').close(), 1400);
 });
 
+/* ---------------- spoken language ---------------- */
+const WHISPER_LANG = { en: 'english', es: 'spanish', pt: 'portuguese', fr: 'french', de: 'german', it: 'italian', nl: 'dutch', tr: 'turkish', ru: 'russian', pl: 'polish', hi: 'hindi', ar: 'arabic', ja: 'japanese', ko: 'korean', zh: 'chinese', id: 'indonesian' };
+function browserLang() {
+  for (const l of [...(navigator.languages || []), navigator.language, WF.lang]) {
+    const code = String(l || '').slice(0, 2).toLowerCase();
+    if (WHISPER_LANG[code]) return WHISPER_LANG[code];
+  }
+  return null;
+}
+// Most creators speak their own language: preselect it (they can still pick "detect automatically").
+(() => {
+  const saved = (() => { try { return localStorage.getItem('wf_spoken'); } catch { return null; } })();
+  const sel = $('spokenLang');
+  const pick = saved !== null ? saved : browserLang();
+  if (pick !== null && [...sel.options].some((o) => o.value === pick)) sel.value = pick;
+  sel.addEventListener('change', () => { try { localStorage.setItem('wf_spoken', sel.value); } catch {} });
+})();
+
 /* ---------------- file input ---------------- */
 const drop = $('drop');
 const fileInput = $('fileInput');
@@ -115,7 +133,7 @@ async function start(file, langOverride) {
   if (app.dataset.state !== 'busy') return; // cancelled
   state.chunks = buildChunks(words, state.wordsPer);
   const empty = !audio ? 'decode' : !words.length ? 'no_words' : null;
-  const info = { seconds: Math.round((performance.now() - t0) / 1000), words: words.length, duration: Math.round(state.duration), lang: spoken || 'auto', device: state.device || (E2E ? 'e2e' : 'none'), type: file.type || 'unknown' };
+  const info = { seconds: Math.round((performance.now() - t0) / 1000), words: words.length, duration: Math.round(state.duration), lang: spoken || `auto:${state.detectedLang || '?'}`, device: state.device || (E2E ? 'e2e' : 'none'), type: file.type || 'unknown' };
   track(empty ? 'transcribe_empty' : 'tool_used', empty ? { ...info, reason: empty } : info);
   enterEditor(empty, spoken);
 }
@@ -163,12 +181,12 @@ function runWhisper(audio, language) {
       if (m.type === 'download') setBusy(t.downloading, 0.06 + m.progress * 0.54);
       else if (m.type === 'loading') setBusy(t.loadingModel, 0.62, true);
       else if (m.type === 'transcribe') setBusy(t.transcribing, 0.64 + m.progress * 0.36);
-      else if (m.type === 'result') { state.device = m.device; cleanupWorker(); resolve(m.words); }
+      else if (m.type === 'result') { state.device = m.device; state.detectedLang = m.language; cleanupWorker(); resolve(m.words); }
       else if (m.type === 'error') { cleanupWorker(); reject(Object.assign(new Error(m.message), { stage: m.stage })); }
     };
     worker.onerror = (e) => { cleanupWorker(); reject(Object.assign(new Error(e.message || 'worker error'), { stage: 'model' })); };
     state.rejectWorker = reject;
-    worker.postMessage({ type: 'run', audio, language: language || null, modelId: CONFIG.MODEL_ID, libUrl: CONFIG.TRANSFORMERS_URL }, [audio.buffer]);
+    worker.postMessage({ type: 'run', audio, language: language || null, hint: browserLang(), modelId: CONFIG.MODEL_ID, libUrl: CONFIG.TRANSFORMERS_URL }, [audio.buffer]);
   });
 }
 
