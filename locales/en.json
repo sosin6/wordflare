@@ -6,36 +6,80 @@
     "description": "Add viral, word-by-word animated captions to your videos for free. AI subtitles in any language, right in your browser. No sign-up, no upload, no forced watermark.",
     "ogAlt": "Wordflare — captions that pop"
   },
-  "nav": { "how": "How it works", "faq": "FAQ", "language": "Language" },
+  "nav": {
+    "how": "How it works",
+    "faq": "FAQ",
+    "language": "Language"
+  },
   "hero": {
     "eyebrow": "Free AI caption generator",
     "title": "Animated captions that make your videos <mark>pop</mark>",
     "subtitle": "Word-by-word subtitles for Reels, TikTok and Shorts in any language. Free, no sign-up — and your video never leaves your device.",
-    "badges": ["No sign-up", "No upload", "Any language", "No forced watermark"]
+    "badges": [
+      "No sign-up",
+      "No upload",
+      "Any language",
+      "No forced watermark"
+    ]
   },
   "how": {
     "title": "How it works",
     "steps": [
-      { "t": "Drop your video", "d": "MP4, MOV or WebM, up to 3 minutes. It stays on your device." },
-      { "t": "AI writes the captions", "d": "Speech is transcribed word by word, in almost any language. Fix any word in one click." },
-      { "t": "Pick a style and export", "d": "Choose a viral style, adjust size and position, and download your video." }
+      {
+        "t": "Drop your video",
+        "d": "MP4, MOV or WebM, up to 3 minutes. It stays on your device."
+      },
+      {
+        "t": "AI writes the captions",
+        "d": "Speech is transcribed word by word, in almost any language. Fix any word in one click."
+      },
+      {
+        "t": "Pick a style and export",
+        "d": "Choose a viral style, adjust size and position, and download your video."
+      }
     ]
   },
   "pro": {
     "title": "Wordflare Pro is coming",
     "subtitle": "Join the waitlist and get 50% off when it launches.",
-    "items": ["Translate captions into 50+ languages", "Smart placement that never covers faces", "4K export", "Videos longer than 3 minutes", "Caption many videos at once", "Brand kit with your fonts and colors", "Auto emojis & keyword highlights"],
+    "items": [
+      "Translate captions into 50+ languages",
+      "Smart placement that never covers faces",
+      "4K export",
+      "Videos longer than 3 minutes",
+      "Caption many videos at once",
+      "Brand kit with your fonts and colors",
+      "Auto emojis & keyword highlights"
+    ],
     "cta": "Get 50% off at launch"
   },
   "faq": {
     "title": "Questions",
     "items": [
-      { "q": "Is Wordflare really free?", "a": "Yes. Generating, editing and exporting captions is free, with no account and no forced watermark. A small optional wordflare.app tag helps us stay free — you can turn it off." },
-      { "q": "Is my video uploaded anywhere?", "a": "No. The AI runs inside your browser, so your video and audio never leave your device. The first time, your browser downloads the AI model (about 80–150 MB); after that it is cached." },
-      { "q": "Which languages are supported?", "a": "Wordflare detects the spoken language automatically and works with about 99 languages, including English, Spanish, Portuguese, French, German, Hindi, Arabic and Japanese." },
-      { "q": "Can I edit the captions?", "a": "Yes. Click any caption to fix words, add missing ones or delete lines. You can also download an .srt subtitle file." },
-      { "q": "Why is it slow on my phone?", "a": "The AI runs on your own device. Recent computers and phones are fast; older devices take longer. Short clips work best on mobile." },
-      { "q": "What format is the exported video?", "a": "MP4 on most browsers (WebM on some). Export plays your video once in real time while it records, so keep the tab open until it finishes." }
+      {
+        "q": "Is Wordflare really free?",
+        "a": "Yes. Generating, editing and exporting captions is free, with no account and no forced watermark. A small optional wordflare.app tag helps us stay free — you can turn it off."
+      },
+      {
+        "q": "Is my video uploaded anywhere?",
+        "a": "No. The AI runs inside your browser, so your video and audio never leave your device. The first time, your browser downloads the AI model (about 80–150 MB); after that it is cached."
+      },
+      {
+        "q": "Which languages are supported?",
+        "a": "Wordflare detects the spoken language automatically and works with about 99 languages, including English, Spanish, Portuguese, French, German, Hindi, Arabic and Japanese."
+      },
+      {
+        "q": "Can I edit the captions?",
+        "a": "Yes. Click any caption to fix words, add missing ones or delete lines. You can also download an .srt subtitle file."
+      },
+      {
+        "q": "Why is it slow on my phone?",
+        "a": "The AI runs on your own device. Recent computers and phones are fast; older devices take longer. Short clips work best on mobile."
+      },
+      {
+        "q": "What format is the exported video?",
+        "a": "MP4 on most browsers (WebM on some). Export plays your video once in real time while it records, so keep the tab open until it finishes."
+      }
     ]
   },
   "footer": {
@@ -69,7 +113,13 @@
     "tabStyle": "Style",
     "tabText": "Text",
     "tabPro": "Pro",
-    "styles": { "pop": "Pop", "box": "Box", "karaoke": "Karaoke", "clean": "Clean", "neon": "Neon" },
+    "styles": {
+      "pop": "Pop",
+      "box": "Box",
+      "karaoke": "Karaoke",
+      "clean": "Clean",
+      "neon": "Neon"
+    },
     "color": "Highlight color",
     "size": "Size",
     "position": "Position",
@@ -78,7 +128,7 @@
     "wordsPer": "Words per caption",
     "tag": "Add a small wordflare.app tag (helps us stay free)",
     "textHint": "Click a caption to edit it. Clear it to delete the line.",
-    "noSpeech": "We couldn't hear any speech in this video. You can still add captions by hand.",
+    "noSpeech": "We couldn't detect speech. If someone talks in this video, pick the language and try again.",
     "addLine": "+ Add caption here",
     "export": "Export video",
     "exportSrt": "Download .srt",
@@ -121,6 +171,9 @@
       "decode": "We couldn't read the audio from this video. Try exporting it as MP4 first.",
       "model": "The AI couldn't start on this device. Try the latest Chrome or Edge on a computer.",
       "generic": "Something went wrong. Please try again."
-    }
+    },
+    "volume": "Volume (preview only)",
+    "retry": "Transcribe again",
+    "noAudio": "We couldn't read the audio of this video. Try again, or export it as MP4 from your phone/editor and upload it again."
   }
 }

@@ -65,7 +65,7 @@ async function transcribe(audio, language) {
     const seg = audio.subarray(i, Math.min(audio.length, i + LEN));
     const offset = i / SR;
     self.postMessage({ type: 'transcribe', progress: k / total });
-    if (seg.length < SR * 0.3 || rms(seg) < 0.003) { if (i + LEN >= audio.length) break; continue; }
+    if (seg.length < SR * 0.3 || rms(seg) < 0.001) { if (i + LEN >= audio.length) break; continue; }
     const opts = { return_timestamps: 'word', task: 'transcribe' };
     if (language) opts.language = language;
     const out = await asr(seg, opts);

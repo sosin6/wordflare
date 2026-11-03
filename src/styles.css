@@ -111,6 +111,15 @@ h1 mark { background: var(--yellow); color: var(--ink); padding: 0 .18em; border
 .icon-btn .i-pause { display: none; }
 .app.is-playing .icon-btn .i-pause { display: block; }
 .app.is-playing .icon-btn .i-play { display: none; }
+.vol { display: flex; align-items: center; gap: 8px; flex: 0 0 150px; }
+.vol .i-mute { display: none; }
+.vol.is-muted .i-mute { display: block; }
+.vol.is-muted .i-vol { display: none; }
+#seek { flex: 1; min-width: 0; }
+@media (max-width: 520px) { .transport { flex-wrap: wrap; } .vol { flex: 1 1 100%; } }
+.retry-box { display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 12px; background: rgba(255, 212, 59, .07); border: 1px solid rgba(255, 212, 59, .25); }
+.retry-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.retry-row select { background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 10px; padding: 7px 10px; color: var(--text); flex: 1; min-width: 0; }
 .time { font-variant-numeric: tabular-nums; color: var(--muted); font-size: .88rem; min-width: 42px; text-align: right; }
 input[type=range] { width: 100%; accent-color: var(--yellow); }
 

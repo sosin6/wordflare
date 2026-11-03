@@ -95,6 +95,13 @@
             </button>
             <input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek">
             <span class="time" id="timeLabel">0:00</span>
+            <div class="vol">
+              <button type="button" class="icon-btn" id="muteBtn" aria-label="{{app.volume}}">
+                <svg class="i-vol" viewBox="0 0 24 24" width="20" height="20"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <svg class="i-mute" viewBox="0 0 24 24" width="20" height="20"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <input type="range" id="volRange" min="0" max="100" value="50" aria-label="{{app.volume}}">
+            </div>
           </div>
         </div>
 
@@ -131,7 +138,13 @@
 
           <div class="tabpane" data-pane="text">
             <p class="hint">{{app.textHint}}</p>
-            <p class="hint warn" id="noSpeech" hidden>{{app.noSpeech}}</p>
+            <div class="retry-box" id="retryBox" hidden>
+              <p class="hint warn" id="retryMsg"></p>
+              <div class="retry-row">
+                <select id="retryLang" aria-label="{{app.langLabel}}">{{html.spokenOptions}}</select>
+                <button type="button" class="btn btn-primary btn-sm" id="retryBtn">{{app.retry}}</button>
+              </div>
+            </div>
             <ol class="lines" id="lines"></ol>
             <button type="button" class="btn btn-ghost btn-sm" id="addLine">{{app.addLine}}</button>
           </div>

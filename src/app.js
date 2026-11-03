@@ -69,8 +69,9 @@ function setBusy(text, progress, indeterminate = false) {
   if (progress != null) $('busyBar').style.width = `${Math.round(progress * 100)}%`;
 }
 
-async function start(file) {
+async function start(file, langOverride) {
   resetMedia();
+  const spoken = langOverride ?? $('spokenLang').value;
   state.file = file;
   state.url = URL.createObjectURL(file);
   setBusy(t.preparing, 0.02, true);
@@ -94,13 +95,14 @@ async function start(file) {
     audio = await decodeAudio(file);
   } catch (err) {
     reportError('audio_decode', err);
+    track('audio_decode_failed', { type: file.type || file.name.split('.').pop(), err: `${err?.name}: ${err?.message}`.slice(0, 150) });
     audio = null; // no audio track or unsupported codec → captions by hand
   }
 
   let words = [];
   if (audio) {
     try {
-      words = E2E ? fakeWords(state.duration) : await runWhisper(audio, $('spokenLang').value);
+      words = E2E ? (params.get('e2e') === 'empty' && !langOverride ? [] : fakeWords(state.duration)) : await runWhisper(audio, spoken);
     } catch (err) {
       if (err?.cancelled) return;
       reportError(`whisper_${err?.stage || 'run'}`, err);
@@ -110,8 +112,10 @@ async function start(file) {
   }
   if (app.dataset.state !== 'busy') return; // cancelled
   state.chunks = buildChunks(words, state.wordsPer);
-  track('tool_used', { seconds: Math.round((performance.now() - t0) / 1000), words: words.length, duration: Math.round(state.duration), lang: $('spokenLang').value || 'auto', device: state.device || (E2E ? 'e2e' : 'none') });
-  enterEditor(!audio || !words.length);
+  const empty = !audio ? 'decode' : !words.length ? 'no_words' : null;
+  const info = { seconds: Math.round((performance.now() - t0) / 1000), words: words.length, duration: Math.round(state.duration), lang: spoken || 'auto', device: state.device || (E2E ? 'e2e' : 'none'), type: file.type || 'unknown' };
+  track(empty ? 'transcribe_empty' : 'tool_used', empty ? { ...info, reason: empty } : info);
+  enterEditor(empty, spoken);
 }
 
 function loadVideo(url) {
@@ -184,17 +188,18 @@ function fakeWords(duration) {
 }
 
 /* ---------------- editor ---------------- */
-async function enterEditor(noSpeech) {
+async function enterEditor(emptyReason, spoken = '') {
   try { await Promise.all(['900', '800', '700'].map((w) => document.fonts.load(`${w} 40px Inter`))); } catch {}
   app.dataset.state = 'editor';
-  $('noSpeech').hidden = !noSpeech;
+  $('retryBox').hidden = !emptyReason;
+  if (emptyReason) { $('retryMsg').textContent = emptyReason === 'decode' ? t.noAudio : t.noSpeech; $('retryLang').value = spoken; }
   const frame = $('frame');
   frame.style.setProperty('--ar', (state.w / state.h).toFixed(4));
   const scale = Math.min(1, 960 / Math.max(state.w, state.h));
   overlay.width = Math.round(state.w * scale);
   overlay.height = Math.round(state.h * scale);
   renderLines();
-  if (noSpeech) selectTab('text');
+  selectTab(emptyReason ? 'text' : 'style');
   state.dirty = true;
   requestAnimationFrame(loop);
   app.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -234,6 +239,30 @@ video.addEventListener('ended', () => app.classList.remove('is-playing'));
 let seeking = false;
 $('seek').addEventListener('input', (e) => { seeking = true; video.currentTime = (e.target.value / 1000) * state.duration; state.dirty = true; });
 $('seek').addEventListener('change', () => { seeking = false; });
+
+// retry transcription (other language / transient failure)
+$('retryBtn').addEventListener('click', () => {
+  if (!state.file) return;
+  track('transcribe_retry', { lang: $('retryLang').value || 'auto' });
+  start(state.file, $('retryLang').value);
+});
+
+// preview volume (never touches the exported audio)
+const volBox = $('volRange').parentElement;
+const savedVol = (() => { try { return localStorage.getItem('wf_vol'); } catch { return null; } })();
+if (savedVol !== null) $('volRange').value = savedVol;
+function applyVolume() {
+  const v = $('volRange').value / 100;
+  video.volume = v;
+  video.muted = v === 0 || volBox.classList.contains('is-muted');
+}
+$('volRange').addEventListener('input', () => {
+  volBox.classList.toggle('is-muted', +$('volRange').value === 0);
+  applyVolume();
+  try { localStorage.setItem('wf_vol', $('volRange').value); } catch {}
+});
+$('muteBtn').addEventListener('click', () => { volBox.classList.toggle('is-muted'); applyVolume(); });
+applyVolume();
 
 // tabs
 document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () => selectTab(b.dataset.tab)));

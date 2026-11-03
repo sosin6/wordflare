@@ -115,6 +115,23 @@ await evalJs(`document.getElementById('exportBtn').click()`);
 const exported = await waitFor(`!document.getElementById('exportBtn').disabled && document.getElementById('exportProg').hidden`, 25000);
 check('export finishes', exported && logs.some((l) => l.includes('export_done')), logs.filter((l) => l.includes('export')).join(' | '));
 
+// volume (preview only)
+await evalJs(`(()=>{const r=document.getElementById('volRange'); r.value=20; r.dispatchEvent(new Event('input'));})()`);
+check('volume slider sets preview volume', await evalJs(`Math.abs(document.getElementById('video').volume - 0.2) < 0.01`));
+await evalJs(`document.getElementById('muteBtn').click()`);
+check('mute button mutes preview', await evalJs(`document.getElementById('video').muted === true`));
+await evalJs(`document.getElementById('muteBtn').click()`);
+
+// empty transcription → retry box → retry fills captions
+await nav(`http://localhost:${PORT}/es/?e2e=empty`);
+{ const { root: r2 } = await S('DOM.getDocument'); const { nodeId: n2 } = await S('DOM.querySelector', { nodeId: r2.nodeId, selector: '#fileInput' });
+  await S('DOM.setFileInputFiles', { nodeId: n2, files: [join(ROOT, 'tests/fixtures/sample.mp4')] }); }
+await waitFor(`document.getElementById('app').dataset.state === 'editor'`);
+check('retry box shows when no words', await evalJs(`!document.getElementById('retryBox').hidden && document.getElementById('retryMsg').textContent.length > 10`));
+await evalJs(`document.getElementById('retryLang').value='spanish'; document.getElementById('retryBtn').click()`);
+await sleep(300);
+check('retry produces captions', await waitFor(`document.getElementById('app').dataset.state === 'editor' && window.__wf.state.chunks.length > 2 && document.getElementById('retryBox').hidden`));
+
 // mobile layout
 await S('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
 await evalJs(`window.scrollTo(0,0)`); await sleep(300);

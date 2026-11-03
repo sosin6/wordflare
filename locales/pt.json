@@ -6,36 +6,80 @@
     "description": "Coloque legendas animadas palavra por palavra nos seus vídeos, de graça. Legendas com IA em qualquer idioma, direto no navegador. Sem cadastro, sem upload, sem marca d'água obrigatória.",
     "ogAlt": "Wordflare — legendas que explodem"
   },
-  "nav": { "how": "Como funciona", "faq": "Perguntas", "language": "Idioma" },
+  "nav": {
+    "how": "Como funciona",
+    "faq": "Perguntas",
+    "language": "Idioma"
+  },
   "hero": {
     "eyebrow": "Gerador de legendas com IA grátis",
     "title": "Legendas animadas que fazem seus vídeos <mark>explodirem</mark>",
     "subtitle": "Legendas palavra por palavra para Reels, TikTok e Shorts em qualquer idioma. Grátis, sem cadastro — e seu vídeo nunca sai do seu aparelho.",
-    "badges": ["Sem cadastro", "Sem upload", "Qualquer idioma", "Sem marca d'água obrigatória"]
+    "badges": [
+      "Sem cadastro",
+      "Sem upload",
+      "Qualquer idioma",
+      "Sem marca d'água obrigatória"
+    ]
   },
   "how": {
     "title": "Como funciona",
     "steps": [
-      { "t": "Solte seu vídeo", "d": "MP4, MOV ou WebM, até 3 minutos. Ele fica no seu aparelho." },
-      { "t": "A IA escreve as legendas", "d": "A fala é transcrita palavra por palavra, em quase qualquer idioma. Corrija o que quiser com um clique." },
-      { "t": "Escolha um estilo e baixe", "d": "Escolha um estilo viral, ajuste tamanho e posição e baixe seu vídeo." }
+      {
+        "t": "Solte seu vídeo",
+        "d": "MP4, MOV ou WebM, até 3 minutos. Ele fica no seu aparelho."
+      },
+      {
+        "t": "A IA escreve as legendas",
+        "d": "A fala é transcrita palavra por palavra, em quase qualquer idioma. Corrija o que quiser com um clique."
+      },
+      {
+        "t": "Escolha um estilo e baixe",
+        "d": "Escolha um estilo viral, ajuste tamanho e posição e baixe seu vídeo."
+      }
     ]
   },
   "pro": {
     "title": "O Wordflare Pro está chegando",
     "subtitle": "Entre na lista de espera e ganhe 50% de desconto no lançamento.",
-    "items": ["Traduzir legendas para mais de 50 idiomas", "Posicionamento inteligente que não cobre rostos", "Exportar em 4K", "Vídeos com mais de 3 minutos", "Legendar vários vídeos de uma vez", "Kit de marca com suas fontes e cores", "Emojis automáticos e palavras-chave destacadas"],
+    "items": [
+      "Traduzir legendas para mais de 50 idiomas",
+      "Posicionamento inteligente que não cobre rostos",
+      "Exportar em 4K",
+      "Vídeos com mais de 3 minutos",
+      "Legendar vários vídeos de uma vez",
+      "Kit de marca com suas fontes e cores",
+      "Emojis automáticos e palavras-chave destacadas"
+    ],
     "cta": "Quero 50% off no lançamento"
   },
   "faq": {
     "title": "Perguntas frequentes",
     "items": [
-      { "q": "O Wordflare é grátis mesmo?", "a": "Sim. Gerar, editar e exportar legendas é grátis, sem conta e sem marca d'água obrigatória. Uma pequena etiqueta opcional wordflare.app nos ajuda a continuar grátis — você pode desativá-la." },
-      { "q": "Meu vídeo é enviado para algum lugar?", "a": "Não. A IA roda dentro do seu navegador, então seu vídeo e seu áudio nunca saem do seu aparelho. Na primeira vez, o navegador baixa o modelo de IA (cerca de 80–150 MB); depois ele fica salvo." },
-      { "q": "Quais idiomas funcionam?", "a": "O Wordflare detecta o idioma falado automaticamente e funciona com cerca de 99 idiomas, incluindo português, inglês, espanhol, francês, alemão, hindi, árabe e japonês." },
-      { "q": "Posso editar as legendas?", "a": "Sim. Toque em qualquer legenda para corrigir palavras, adicionar as que faltam ou apagar linhas. Você também pode baixar um arquivo .srt." },
-      { "q": "Por que está lento no meu celular?", "a": "A IA roda no seu próprio aparelho. Computadores e celulares recentes são rápidos; os mais antigos demoram mais. No celular, vídeos curtos funcionam melhor." },
-      { "q": "Em que formato o vídeo é exportado?", "a": "MP4 na maioria dos navegadores (WebM em alguns). A exportação reproduz o vídeo uma vez em tempo real enquanto grava, então mantenha a aba aberta até terminar." }
+      {
+        "q": "O Wordflare é grátis mesmo?",
+        "a": "Sim. Gerar, editar e exportar legendas é grátis, sem conta e sem marca d'água obrigatória. Uma pequena etiqueta opcional wordflare.app nos ajuda a continuar grátis — você pode desativá-la."
+      },
+      {
+        "q": "Meu vídeo é enviado para algum lugar?",
+        "a": "Não. A IA roda dentro do seu navegador, então seu vídeo e seu áudio nunca saem do seu aparelho. Na primeira vez, o navegador baixa o modelo de IA (cerca de 80–150 MB); depois ele fica salvo."
+      },
+      {
+        "q": "Quais idiomas funcionam?",
+        "a": "O Wordflare detecta o idioma falado automaticamente e funciona com cerca de 99 idiomas, incluindo português, inglês, espanhol, francês, alemão, hindi, árabe e japonês."
+      },
+      {
+        "q": "Posso editar as legendas?",
+        "a": "Sim. Toque em qualquer legenda para corrigir palavras, adicionar as que faltam ou apagar linhas. Você também pode baixar um arquivo .srt."
+      },
+      {
+        "q": "Por que está lento no meu celular?",
+        "a": "A IA roda no seu próprio aparelho. Computadores e celulares recentes são rápidos; os mais antigos demoram mais. No celular, vídeos curtos funcionam melhor."
+      },
+      {
+        "q": "Em que formato o vídeo é exportado?",
+        "a": "MP4 na maioria dos navegadores (WebM em alguns). A exportação reproduz o vídeo uma vez em tempo real enquanto grava, então mantenha a aba aberta até terminar."
+      }
     ]
   },
   "footer": {
@@ -69,7 +113,13 @@
     "tabStyle": "Estilo",
     "tabText": "Texto",
     "tabPro": "Pro",
-    "styles": { "pop": "Pop", "box": "Caixa", "karaoke": "Karaokê", "clean": "Limpo", "neon": "Neon" },
+    "styles": {
+      "pop": "Pop",
+      "box": "Caixa",
+      "karaoke": "Karaokê",
+      "clean": "Limpo",
+      "neon": "Neon"
+    },
     "color": "Cor de destaque",
     "size": "Tamanho",
     "position": "Posição",
@@ -78,7 +128,7 @@
     "wordsPer": "Palavras por legenda",
     "tag": "Adicionar uma pequena etiqueta wordflare.app (nos ajuda a continuar grátis)",
     "textHint": "Toque em uma legenda para editar. Apague o texto para remover a linha.",
-    "noSpeech": "Não ouvimos fala neste vídeo. Você ainda pode adicionar legendas à mão.",
+    "noSpeech": "Não detectamos fala. Se alguém fala no vídeo, escolha o idioma e tente de novo.",
     "addLine": "+ Adicionar legenda aqui",
     "export": "Exportar vídeo",
     "exportSrt": "Baixar .srt",
@@ -121,6 +171,9 @@
       "decode": "Não conseguimos ler o áudio deste vídeo. Tente exportá-lo como MP4 primeiro.",
       "model": "A IA não conseguiu iniciar neste aparelho. Tente a versão mais recente do Chrome ou Edge em um computador.",
       "generic": "Algo deu errado. Tente de novo."
-    }
+    },
+    "volume": "Volume (só na prévia)",
+    "retry": "Transcrever de novo",
+    "noAudio": "Não conseguimos ler o áudio deste vídeo. Tente de novo, ou exporte como MP4 no celular/editor e envie outra vez."
   }
 }
