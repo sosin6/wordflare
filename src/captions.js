@@ -101,7 +101,9 @@ export function drawCaptions(ctx, W, H, t, chunks, opts) {
   ctx.font = `${def.weight} ${fs}px ${FONT}`;
   ctx.textBaseline = 'alphabetic';
   ctx.lineJoin = 'round';
-  const space = ctx.measureText(' ').width * 1.1;
+  // Highlighted words grow (pop) or get a box: leave room so they never touch their neighbours.
+  const extra = def.highlight === 'fill' ? fs * 0.16 : def.highlight === 'box' ? fs * 0.18 : 0;
+  const space = ctx.measureText(' ').width * 1.1 + extra;
   const words = chunk.words.map((w) => {
     const text = def.upper ? w.text.toLocaleUpperCase() : w.text;
     return { ...w, text, width: ctx.measureText(text).width };
@@ -187,10 +189,13 @@ function drawWord(ctx, def, w, x, y, fs, status, since, color) {
       ctx.fillText(w.text, x, y);
       break;
     case 'glow':
-      if (active) { ctx.shadowColor = color; ctx.shadowBlur = fs * 0.7; ctx.fillStyle = color; }
-      else { ctx.lineWidth = fs * 0.1; ctx.strokeStyle = 'rgba(0,0,0,.8)'; ctx.strokeText(w.text, x, y); ctx.fillStyle = '#fff'; }
-      ctx.fillText(w.text, x, y);
-      if (active) { ctx.shadowBlur = fs * 0.25; ctx.fillText(w.text, x, y); }
+      // Dark outline first so the glowing word stays readable on bright backgrounds.
+      ctx.lineWidth = fs * 0.14; ctx.strokeStyle = 'rgba(0,0,0,.85)'; ctx.strokeText(w.text, x, y);
+      if (active) {
+        ctx.shadowColor = color; ctx.shadowBlur = fs * 0.6; ctx.fillStyle = color;
+        ctx.fillText(w.text, x, y);
+        ctx.shadowBlur = 0; ctx.fillText(w.text, x, y);
+      } else { ctx.fillStyle = '#fff'; ctx.fillText(w.text, x, y); }
       break;
     default: // none
       ctx.shadowColor = 'rgba(0,0,0,.85)'; ctx.shadowBlur = fs * 0.3; ctx.shadowOffsetY = fs * 0.04;
