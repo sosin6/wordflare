@@ -9,10 +9,29 @@ export function track(name, data) {
   if (ready && window.umami) { try { window.umami.track(name.slice(0, 50), payload); } catch {} }
   else queue.push([name, payload]);
   if (window.WF?.debug) console.debug('[track]', name, payload || '');
+  mirror(name, payload);
+}
+
+// Important events are also stored in our own Google Sheet (Umami's free plan has no API),
+// so the automated reports can read them. Only product events, never emails or video content.
+const MIRROR = /^(tool_used|transcribe_(empty|error|retry)|audio_decode_failed|js_error|feedback|export_(done|error|unsupported)|srt_download|fake_door_.*|lead_send_error)$/;
+let mirrored = 0;
+function mirror(name, payload) {
+  if (!CONFIG.LEADS_ENDPOINT || !MIRROR.test(name) || mirrored++ > 30) return;
+  const loc = location.hostname;
+  if (/localhost|127\.0\.0\.1/.test(loc) || new URLSearchParams(location.search).has('e2e')) return;
+  try {
+    const body = new URLSearchParams({ type: 'event', name: name.slice(0, 50), data: payload ? JSON.stringify(payload).slice(0, 600) : '', lang: window.WF?.lang || '', page: location.pathname });
+    fetch(CONFIG.LEADS_ENDPOINT, { method: 'POST', mode: 'no-cors', body, keepalive: true }).catch(() => {});
+  } catch {}
 }
 
 export function initAnalytics() {
   installErrorReporting();
+  // Vercel Web Analytics (cookieless page views; only served on the production domain).
+  if (/(^|\.)wordflare\.app$/.test(location.hostname) && !new URLSearchParams(location.search).has('e2e')) {
+    const v = document.createElement('script'); v.defer = true; v.src = '/_vercel/insights/script.js'; document.head.appendChild(v);
+  }
   if (!CONFIG.UMAMI_WEBSITE_ID || /localhost|127\.0\.0\.1/.test(location.hostname) || new URLSearchParams(location.search).has('e2e')) return;
   const s = document.createElement('script');
   s.defer = true;
