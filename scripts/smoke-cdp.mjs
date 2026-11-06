@@ -67,7 +67,7 @@ for (const p of ['/', '/es/', '/pt/', '/privacy/', '/es/terms/', '/pt/privacy/',
   check(`load ${p} (lang=${lang})`, errors.length === before, errors.slice(before).join(' | '));
 }
 check('landing h1 is keyword', await evalJs(`(async()=>{const h=await (await fetch('/es/subtitulos-para-tiktok/')).text();return h.includes('<h1 class="eyebrow">Generador de subtítulos para TikTok gratis</h1>') && h.includes('hreflang="pt" href="https://wordflare.app/pt/legendas-para-tiktok/"')})()`));
-check('sitemap lists landings', await evalJs(`(async()=>{const x=await (await fetch('/sitemap.xml')).text();return (x.match(/<loc>/g)||[]).length===21 && x.includes('/es/generar-subtitulos-srt/')})()`));
+check('sitemap lists landings', await evalJs(`(async()=>{const x=await (await fetch('/sitemap.xml')).text();return (x.match(/<loc>/g)||[]).length===24 && x.includes('/es/generar-subtitulos-srt/')})()`));
 check('es page has no English hero', await evalJs(`(async()=>{const r=await fetch('/es/');const h=await r.text();return !h.includes('Animated captions that make')})()`));
 
 // 2. full flow (desktop)

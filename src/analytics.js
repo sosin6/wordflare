@@ -14,7 +14,8 @@ export function track(name, data) {
 
 // Important events are also stored in our own Google Sheet (Umami's free plan has no API),
 // so the automated reports can read them. Only product events, never emails or video content.
-const MIRROR = /^(tool_used|transcribe_(empty|error|retry)|audio_decode_failed|js_error|feedback|export_(done|error|unsupported)|srt_download|fake_door_.*|lead_send_error)$/;
+// page_view_app/video_loaded/export_start show where real visitors drop off (funnel).
+const MIRROR = /^(page_view_app|video_loaded|transcribe_cancel|export_start|tool_used|transcribe_(empty|error|retry)|audio_decode_failed|js_error|feedback|export_(done|error|unsupported)|srt_download|fake_door_.*|lead_send_error)$/;
 let mirrored = 0;
 function mirror(name, payload) {
   if (!CONFIG.LEADS_ENDPOINT || !MIRROR.test(name) || mirrored++ > 30) return;
