@@ -1,0 +1,204 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Inter,sans-serif;color:#fff}
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;
+  background:radial-gradient(1200px 900px at 20% 0%,#3a2a6b 0%,#2a1f4d 35%,#0d0b16 100%);
+  padding:96px 88px;display:flex;flex-direction:column;margin-bottom:20px}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:30px;color:#b9aee0}
+.brand{display:flex;align-items:center;gap:16px;color:#fff;font-weight:700}
+.brand svg{width:56px;height:56px}
+.count{font-size:28px;color:#8f84b8}
+h1{font-family:'Inter Display',Inter;font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-2px;margin-top:120px}
+h2{font-family:'Inter Display',Inter;font-weight:900;font-size:76px;line-height:1.05;letter-spacing:-1.5px;margin-top:56px}
+.kicker{font-weight:800;font-size:32px;color:#FF5C8A;letter-spacing:3px;text-transform:uppercase;margin-top:64px}
+mark{background:#FFD43B;color:#0d0b16;padding:0 14px;border-radius:14px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.y{color:#FFD43B}
+.sub{font-size:40px;color:#cfc6ef;margin-top:36px;line-height:1.3;font-weight:500}
+.swipe{position:absolute;right:88px;bottom:96px;font-size:34px;font-weight:700;color:#FFD43B}
+.foot{position:absolute;left:88px;bottom:96px;font-size:30px;color:#8f84b8;font-weight:600}
+.spark{position:absolute;right:90px;top:250px;width:140px}
+.pair{display:flex;gap:56px;justify-content:center;margin-top:auto;margin-bottom:0}
+.ph{width:350px;height:600px;border-radius:44px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#4a5866,#232b33);border:6px solid #0d0b16;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.ph .head{position:absolute;left:50%;top:120px;width:150px;height:150px;border-radius:50%;background:#6b7884;transform:translateX(-50%)}
+.ph .body{position:absolute;left:50%;top:285px;width:270px;height:420px;border-radius:120px 120px 0 0;background:#6b7884;transform:translateX(-50%)}
+.ph.bright{background:linear-gradient(160deg,#fff6d9,#ffe9a8)}
+.ph.bright .head,.ph.bright .body{background:#f3d98b}
+.cap{position:absolute;left:24px;right:24px;text-align:center;font-weight:900;text-transform:uppercase}
+.lab{position:absolute;top:-2px;left:50%;transform:translateX(-50%);}
+.tag{display:block;text-align:center;font-size:34px;font-weight:800;margin-top:22px}
+.bad{color:#FF5C8A}.good{color:#7CF29A}
+.ui{position:absolute;right:16px;bottom:60px;display:flex;flex-direction:column;gap:22px}
+.ui i{display:block;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.85)}
+.uitxt{position:absolute;left:22px;right:80px;bottom:30px}
+.uitxt b{display:block;height:20px;border-radius:10px;background:rgba(255,255,255,.85);margin-top:12px}
+.zone{position:absolute;left:0;right:0;bottom:0;height:190px;background:repeating-linear-gradient(45deg,rgba(255,92,138,.18) 0 14px,transparent 14px 28px)}
+.wrap{display:flex;flex-direction:column;align-items:center}
+.drop{margin:auto auto 80px;width:820px;height:520px;border:6px dashed #FFD43B;border-radius:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:rgba(255,212,59,.06)}
+.drop .ic{width:140px;height:140px;border-radius:32px;background:#FFD43B;display:flex;align-items:center;justify-content:center}
+.drop p{font-size:44px;font-weight:800}
+.drop small{font-size:30px;color:#b9aee0}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:auto;margin-bottom:80px}
+.chip{height:200px;border-radius:32px;background:#1b1533;border:3px solid #3a2f63;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.chip .n{font-size:28px;color:#b9aee0;font-weight:700}
+.chip .w{font-size:56px;font-weight:900;text-transform:uppercase}
+.list{margin-top:auto;margin-bottom:80px;display:flex;flex-direction:column;gap:26px}
+.li{display:flex;align-items:center;gap:28px;font-size:44px;font-weight:700;background:#1b1533;border:3px solid #3a2f63;border-radius:28px;padding:30px 36px}
+.li .ck{width:64px;height:64px;border-radius:50%;background:#FFD43B;color:#0d0b16;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px;flex:none}
+.cta{margin:auto 0 0;text-align:center}
+.cta .logo{width:220px;height:220px;margin:0 auto 48px}
+.cta .url{display:inline-block;background:#FFD43B;color:#0d0b16;font-weight:900;font-size:64px;padding:26px 56px;border-radius:999px;margin-top:48px}
+.cta .bio{font-size:38px;color:#cfc6ef;margin-top:30px;font-weight:600}
+.bar{height:16px;border-radius:8px;background:#3a2f63;overflow:hidden;width:700px;margin:0 auto}
+.bar span{display:block;height:100%;width:72%;background:linear-gradient(90deg,#FFD43B,#FF5C8A)}
+</style></head><body>
+<template id="logo"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1b1533"/><g transform="rotate(-6 32 33)"><rect x="9" y="19" width="46" height="28" rx="7" fill="#FFD43B"/><polyline points="17,26 23.5,40 32,28.5 40.5,40 47,26" fill="none" stroke="#0d0b16" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M51 6c1 5 2.2 6.2 7 7c-4.8.8-6 2-7 7c-1-5-2.2-6.2-7-7c4.8-.8 6-2 7-7z" fill="#FF5C8A"/></svg></template>
+
+<!-- ===== CARRUSEL A ===== -->
+<section class="s" id="a1">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">1/5</div></div>
+  <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1 6 3 9 12 12c-9 3-11 6-12 12c-1-6-3-9-12-12c9-3 11-6 12-12z" fill="#FF5C8A"/></svg>
+  <div class="kicker">Caption tips</div>
+  <h1>3 caption mistakes that <mark>kill</mark> your Reels</h1>
+  <div class="sub">And how to fix each one in seconds.</div>
+  <div class="swipe">Swipe →</div>
+</section>
+
+<section class="s" id="a2">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">2/5</div></div>
+  <div class="kicker">Mistake 1</div>
+  <h2>Full sentences on screen</h2>
+  <div class="sub">Viewers read 2–3 words at a glance. Long lines get skipped.</div>
+  <div class="pair">
+    <div class="wrap"><div class="ph"><div class="head"></div><div class="body"></div>
+      <div class="cap" style="top:380px;font-size:21px;font-weight:700;text-transform:none;line-height:1.3;text-shadow:0 2px 4px #000">so today I want to tell you about the three things I learned when I started posting videos every day</div></div>
+      <span class="tag bad">✗ Too much text</span></div>
+    <div class="wrap"><div class="ph"><div class="head"></div><div class="body"></div>
+      <div class="cap" style="top:390px;font-size:44px;-webkit-text-stroke:8px #000;paint-order:stroke fill">THREE <span class="y">THINGS</span></div></div>
+      <span class="tag good">✓ 2–3 words</span></div>
+  </div>
+</section>
+
+<section class="s" id="a3">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">3/5</div></div>
+  <div class="kicker">Mistake 2</div>
+  <h2>Captions hidden under the app's buttons</h2>
+  <div class="sub">Username, description and icons cover the bottom of the screen.</div>
+  <div class="pair">
+    <div class="wrap"><div class="ph"><div class="head"></div><div class="body"></div><div class="zone"></div>
+      <div class="cap" style="bottom:70px;font-size:40px;-webkit-text-stroke:8px #000;paint-order:stroke fill">WATCH <span class="y">THIS</span></div>
+      <div class="ui"><i></i><i></i><i></i></div><div class="uitxt"><b style="width:60%"></b><b></b></div></div>
+      <span class="tag bad">✗ Too low</span></div>
+    <div class="wrap"><div class="ph"><div class="head"></div><div class="body"></div><div class="zone"></div>
+      <div class="cap" style="top:280px;font-size:40px;-webkit-text-stroke:8px #000;paint-order:stroke fill">WATCH <span class="y">THIS</span></div>
+      <div class="ui"><i></i><i></i><i></i></div><div class="uitxt"><b style="width:60%"></b><b></b></div></div>
+      <span class="tag good">✓ Lower-middle</span></div>
+  </div>
+</section>
+
+<section class="s" id="a4">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">4/5</div></div>
+  <div class="kicker">Mistake 3</div>
+  <h2>Low contrast</h2>
+  <div class="sub">Plain white text disappears on bright backgrounds. Add an outline or a box.</div>
+  <div class="pair">
+    <div class="wrap"><div class="ph bright"><div class="head"></div><div class="body"></div>
+      <div class="cap" style="top:390px;font-size:44px;color:#fff">CAN YOU <span style="color:#fff3c4">READ</span></div></div>
+      <span class="tag bad">✗ Invisible</span></div>
+    <div class="wrap"><div class="ph bright"><div class="head"></div><div class="body"></div>
+      <div class="cap" style="top:390px;font-size:44px"><span style="background:#0d0b16;padding:4px 14px;border-radius:12px">CAN YOU <span class="y">READ</span></span></div></div>
+      <span class="tag good">✓ Box / outline</span></div>
+  </div>
+</section>
+
+<section class="s" id="a5">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">5/5</div></div>
+  <div class="cta">
+    <div class="logo L"></div>
+    <h2 style="margin-top:0">Fix all 3 <span class="y">for free</span></h2>
+    <div class="sub">Animated captions, right in your browser. Any language. No sign-up.</div>
+    <div class="url">wordflare.app</div>
+    <div class="bio">Link in bio 👆</div>
+  </div>
+</section>
+
+<!-- ===== CARRUSEL B ===== -->
+<section class="s" id="b1">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">1/6</div></div>
+  <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1 6 3 9 12 12c-9 3-11 6-12 12c-1-6-3-9-12-12c9-3 11-6 12-12z" fill="#FF5C8A"/></svg>
+  <div class="kicker">How to</div>
+  <h1>Caption a Reel in <mark>30 seconds</mark></h1>
+  <div class="sub">Free. In your browser. No app to install.</div>
+  <div class="swipe">Swipe →</div>
+</section>
+
+<section class="s" id="b2">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">2/6</div></div>
+  <div class="kicker">Step 1</div>
+  <h2>Drop your video</h2>
+  <div class="sub">Open wordflare.app in your browser.</div>
+  <div class="drop"><div class="ic"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0d0b16" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg></div>
+    <p>Drop a video here</p><small>MP4 · MOV · WebM</small></div>
+</section>
+
+<section class="s" id="b3">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">3/6</div></div>
+  <div class="kicker">Step 2</div>
+  <h2>AI writes the captions</h2>
+  <div class="sub">It runs inside your browser: your video is never uploaded. Works in many languages.</div>
+  <div style="margin:auto 0 120px;text-align:center">
+    <div style="font-size:40px;font-weight:700;margin-bottom:32px;color:#cfc6ef">Transcribing…</div>
+    <div class="bar"><span></span></div>
+    <div style="display:flex;gap:16px;justify-content:center;margin-top:56px;flex-wrap:wrap">
+      <span style="font-size:36px;font-weight:700;padding:14px 28px;border-radius:999px;background:#1b1533;border:3px solid #3a2f63">English</span>
+      <span style="font-size:36px;font-weight:700;padding:14px 28px;border-radius:999px;background:#1b1533;border:3px solid #3a2f63">Español</span>
+      <span style="font-size:36px;font-weight:700;padding:14px 28px;border-radius:999px;background:#1b1533;border:3px solid #3a2f63">Português</span>
+      <span style="font-size:36px;font-weight:700;padding:14px 28px;border-radius:999px;background:#1b1533;border:3px solid #3a2f63">+ more</span>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="b4">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">4/6</div></div>
+  <div class="kicker">Step 3</div>
+  <h2>Pick a style</h2>
+  <div class="sub">Click any caption to fix a word.</div>
+  <div class="chips">
+    <div class="chip"><div class="w" style="-webkit-text-stroke:8px #000;paint-order:stroke fill">SAY <span class="y">HI</span></div><div class="n">Pop</div></div>
+    <div class="chip"><div class="w"><span style="background:#FFD43B;color:#0d0b16;padding:2px 16px;border-radius:10px">SAY HI</span></div><div class="n">Box</div></div>
+    <div class="chip"><div class="w"><span class="y">SAY</span> <span style="opacity:.55">HI</span></div><div class="n">Karaoke</div></div>
+    <div class="chip"><div class="w" style="text-transform:none;font-weight:700">say hi</div><div class="n">Clean</div></div>
+    <div class="chip" style="grid-column:span 2"><div class="w" style="color:#fff;text-shadow:0 0 18px #4cc9ff,0 0 36px #4cc9ff">SAY <span style="color:#9be7ff">HI</span></div><div class="n">Neon</div></div>
+  </div>
+</section>
+
+<section class="s" id="b5">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">5/6</div></div>
+  <div class="kicker">Step 4</div>
+  <h2>Export and post</h2>
+  <div class="list">
+    <div class="li"><span class="ck">✓</span>Video with captions burned in</div>
+    <div class="li"><span class="ck">✓</span>No forced watermark</div>
+    <div class="li"><span class="ck">✓</span>Also a .srt file for YouTube</div>
+    <div class="li"><span class="ck">✓</span>Free for videos up to 3 min</div>
+  </div>
+</section>
+
+<section class="s" id="b6">
+  <div class="top"><div class="brand"><span class="L"></span>wordflare</div><div class="count">6/6</div></div>
+  <div class="cta">
+    <div class="logo L"></div>
+    <h2 style="margin-top:0">Try it on your <span class="y">next Reel</span></h2>
+    <div class="sub">Save this post so you have it when you need it.</div>
+    <div class="url">wordflare.app</div>
+    <div class="bio">Link in bio 👆</div>
+  </div>
+</section>
+
+<script>
+const t=document.getElementById('logo').innerHTML;
+document.querySelectorAll('.L').forEach(e=>e.innerHTML=t);
+</script>
+</body></html>
