@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Inter,sans-serif;color:#fff}
+.s{width:1080px;height:1920px;position:relative;overflow:hidden;margin-bottom:20px;
+  background:radial-gradient(1300px 1100px at 30% 10%,#3a2a6b 0%,#2a1f4d 35%,#0d0b16 100%);
+  padding:300px 96px 380px;display:flex;flex-direction:column}
+.k{font-weight:800;font-size:40px;color:#FF5C8A;letter-spacing:4px;text-transform:uppercase}
+h1{font-family:'Inter Display',Inter;font-weight:900;font-size:120px;line-height:1.02;letter-spacing:-2px;margin-top:40px}
+h2{font-family:'Inter Display',Inter;font-weight:900;font-size:92px;line-height:1.05;letter-spacing:-1.5px;margin-top:40px}
+.y{color:#FFD43B} .g{color:#7CF29A}
+mark{background:#FFD43B;color:#0d0b16;padding:0 16px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.p{font-size:52px;line-height:1.3;color:#d6cdf5;font-weight:500;margin-top:48px}
+.steps{margin-top:auto;display:flex;flex-direction:column;gap:30px}
+.st{display:flex;align-items:center;gap:36px;background:#1b1533;border:3px solid #3a2f63;border-radius:36px;padding:38px 44px;font-size:52px;font-weight:700}
+.st b{width:96px;height:96px;flex:none;border-radius:50%;background:#FFD43B;color:#0d0b16;display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:900}
+.ans{margin-top:auto;background:#1b1533;border:3px solid #3a2f63;border-radius:40px;padding:56px 60px;font-size:58px;line-height:1.3;font-weight:600}
+.ans .big{font-family:'Inter Display';font-weight:900;font-size:110px;color:#FFD43B;display:block;margin-bottom:16px}
+.logo{width:120px;height:120px}
+.brand{position:absolute;left:96px;top:150px;display:flex;align-items:center;gap:22px;font-size:44px;font-weight:800}
+.brand svg{width:84px;height:84px}
+.tap{margin-top:auto;text-align:center;font-size:52px;font-weight:800;color:#FFD43B}
+.slot{height:200px;border:5px dashed rgba(255,212,59,.35);border-radius:40px;margin-top:30px}
+.chips{margin-top:auto;display:flex;flex-direction:column;gap:24px}
+.chip{display:flex;justify-content:space-between;align-items:center;background:#1b1533;border:3px solid #3a2f63;border-radius:30px;padding:34px 44px;font-size:48px;font-weight:700}
+.chip i{font-style:normal;font-size:30px;font-weight:900;background:#FF5C8A;color:#0d0b16;padding:8px 20px;border-radius:999px;letter-spacing:2px}
+.bad,.good{border-radius:36px;padding:44px 50px;font-size:50px;line-height:1.3;font-weight:700;margin-top:30px}
+.bad{background:rgba(255,92,138,.12);border:3px solid rgba(255,92,138,.5)}
+.good{background:rgba(124,242,154,.10);border:3px solid rgba(124,242,154,.5)}
+.bad small,.good small{display:block;font-size:34px;letter-spacing:3px;font-weight:900;margin-bottom:10px}
+.bad small{color:#FF5C8A}.good small{color:#7CF29A}
+/* highlight covers */
+.cv{background:#1b1533;display:flex;align-items:center;justify-content:center;padding:0}
+.cv .ring{width:640px;height:640px;border-radius:50%;background:#FFD43B;display:flex;align-items:center;justify-content:center}
+.cv svg{width:330px;height:330px}
+</style></head><body>
+<template id="L"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1b1533"/><g transform="rotate(-6 32 33)"><rect x="9" y="19" width="46" height="28" rx="7" fill="#FFD43B"/><polyline points="17,26 23.5,40 32,28.5 40.5,40 47,26" fill="none" stroke="#0d0b16" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M51 6c1 5 2.2 6.2 7 7c-4.8.8-6 2-7 7c-1-5-2.2-6.2-7-7c4.8-.8 6-2 7-7z" fill="#FF5C8A"/></svg></template>
+
+<!-- START HERE -->
+<section class="s" id="start-1"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Start here</div>
+  <h1>Animated captions for your <mark>Reels</mark></h1>
+  <div class="p">Also TikTok and YouTube Shorts. Free, right in your browser, in almost any language.</div>
+  <div class="tap">Tap → to see how</div>
+</section>
+<section class="s" id="start-2"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">How it works</div>
+  <h2>3 steps, <span class="y">30 seconds</span></h2>
+  <div class="steps">
+    <div class="st"><b>1</b>Drop your video</div>
+    <div class="st"><b>2</b>AI writes the captions</div>
+    <div class="st"><b>3</b>Pick a style &amp; export</div>
+  </div>
+</section>
+<section class="s" id="start-3"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Try it free</div>
+  <h1>No sign-up. <span class="y">No upload.</span></h1>
+  <div class="p">The AI runs inside your browser, so your video never leaves your device.</div>
+  <div class="tap">Tap the link 👇</div>
+  <div style="height:230px"></div>
+</section>
+
+<!-- TIPS -->
+<section class="s" id="tips-1"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Tip 1</div><h2>2–3 words per line</h2>
+  <div class="p">People read captions at a glance. Long sentences get skipped.</div>
+  <div style="margin-top:auto"><div class="bad"><small>✗ DON'T</small>so today I want to tell you about the three things I learned…</div>
+  <div class="good"><small>✓ DO</small>THREE <span class="y">THINGS</span></div></div>
+</section>
+<section class="s" id="tips-2"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Tip 2</div><h2>Keep captions in the lower-middle</h2>
+  <div class="p">The bottom of the screen is covered by the username, description and buttons.</div>
+  <div style="margin-top:auto"><div class="bad"><small>✗ DON'T</small>Captions at the very bottom</div>
+  <div class="good"><small>✓ DO</small>Captions around the middle of the lower half</div></div>
+</section>
+<section class="s" id="tips-3"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Tip 3</div><h2>Start from the first word</h2>
+  <div class="p">Lots of people scroll with the sound off. If nothing is on screen in the first second, they're gone.</div>
+  <div style="margin-top:auto"><div class="good"><small>✓ CHECKLIST</small>Caption from word one<br>Highlight the key word<br>Check it on a small phone</div></div>
+</section>
+
+<!-- FAQ -->
+<section class="s" id="faq-1"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">FAQ</div><h2>Is it really free?</h2>
+  <div class="ans"><span class="big">Yes.</span>Free for videos up to 3 minutes. No credit card, no account.</div>
+</section>
+<section class="s" id="faq-2"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">FAQ</div><h2>Do you upload my video?</h2>
+  <div class="ans"><span class="big">No.</span>The AI runs inside your browser. Your video stays on your device.</div>
+</section>
+<section class="s" id="faq-3"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">FAQ</div><h2>Which languages?</h2>
+  <div class="ans"><span class="big">Lots.</span>English, Spanish, Portuguese and dozens more. It detects the language you speak.</div>
+</section>
+<section class="s" id="faq-4"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">FAQ</div><h2>Is there a watermark?</h2>
+  <div class="ans"><span class="big">Not forced.</span>You can add a small wordflare.app tag if you want to help us. It's up to you.</div>
+</section>
+<section class="s" id="faq-5"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">FAQ</div><h2>What do I get?</h2>
+  <div class="ans"><span class="big">2 files.</span>Your video with animated captions, plus a .srt subtitle file for YouTube or any player.</div>
+</section>
+
+<!-- COMING SOON -->
+<section class="s" id="soon-1"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Coming soon · Pro</div><h2>What we're building <span class="y">next</span></h2>
+  <div class="chips">
+    <div class="chip">Translate captions<i>SOON</i></div>
+    <div class="chip">Several videos at once<i>SOON</i></div>
+    <div class="chip">Captions that avoid faces<i>SOON</i></div>
+    <div class="chip">Auto emojis &amp; highlights<i>SOON</i></div>
+    <div class="chip">4K export · Brand kit<i>SOON</i></div>
+  </div>
+</section>
+<section class="s" id="soon-2"><div class="brand"><span class="L"></span>wordflare</div>
+  <div class="k">Coming soon · Pro</div><h2>Want one of these?</h2>
+  <div class="p">Open the <b class="y">Pro</b> tab in the editor, tap the feature you want and leave your email.</div>
+  <div class="ans"><span class="big">50% off</span>Pro when it launches, for everyone on the list.</div>
+</section>
+
+<!-- HIGHLIGHT COVERS -->
+<section class="s cv" id="cover-start"><div class="ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#0d0b16"/></svg></div></section>
+<section class="s cv" id="cover-styles"><div class="ring"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-family="Inter Display" font-weight="900" font-size="15" fill="#0d0b16">Aa</text></svg></div></section>
+<section class="s cv" id="cover-tips"><div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="#0d0b16" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></div></section>
+<section class="s cv" id="cover-faq"><div class="ring"><svg viewBox="0 0 24 24"><text x="12" y="18.5" text-anchor="middle" font-family="Inter Display" font-weight="900" font-size="18" fill="#0d0b16">?</text></svg></div></section>
+<section class="s cv" id="cover-soon"><div class="ring"><svg viewBox="0 0 24 24"><path d="M12 1c1 6 3 9 11 11c-8 2-10 5-11 11c-1-6-3-9-11-11c8-2 10-5 11-11z" fill="#0d0b16"/></svg></div></section>
+
+<script>const t=document.getElementById('L').innerHTML;document.querySelectorAll('.L').forEach(e=>e.innerHTML=t);</script>
+</body></html>

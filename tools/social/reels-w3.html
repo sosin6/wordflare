@@ -1,0 +1,112 @@
+<!doctype html><meta charset="utf-8">
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module">
+// Week-3 Reels: ?r=sound | mistakes | how   (rendered by render-reels.mjs)
+import { drawCaptions } from './captions.js';
+const c = document.getElementById('c'), ctx = c.getContext('2d');
+const W = 1080, H = 1920, FPS = 30;
+const R = new URLSearchParams(location.search).get('r') || 'sound';
+const Y = '#FFD43B', P = '#FF5C8A', G = '#7CF29A', L = '#c9bff2';
+
+function words(text, t0, step = 0.34) { return text.split(' ').map((w, i) => ({ text: w, start: t0 + i * step, end: t0 + (i + 1) * step - 0.02 })); }
+function chunks(ws, n = 3) { const o = []; for (let i = 0; i < ws.length; i += n) { const g = ws.slice(i, i + n); o.push({ words: g, start: g[0].start, end: g[g.length - 1].end }); } return o; }
+const cap = (text, t0, step) => chunks(words(text, t0, step));
+const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+
+function bg() { const g = ctx.createRadialGradient(W/2, H*0.42, 50, W/2, H*0.42, H*0.8); g.addColorStop(0, '#2a1f4d'); g.addColorStop(1, '#0d0b16'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
+function text(s, x, y, font, color = '#fff', align = 'center', alpha = 1) { ctx.save(); ctx.globalAlpha = alpha; ctx.font = font; ctx.fillStyle = color; ctx.textAlign = align; ctx.fillText(s, x, y); ctx.restore(); }
+function pill(s, cx, y, fill, color = '#0d0b16') { ctx.save(); ctx.font = "800 46px 'Inter'"; const w = ctx.measureText(s).width + 70; ctx.fillStyle = fill; ctx.beginPath(); ctx.roundRect(cx - w/2, y, w, 80, 40); ctx.fill(); ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.fillText(s, cx, y + 56); ctx.restore(); }
+function card(x, y, w, h, bright = false) {
+  ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, w, h, 48); ctx.clip();
+  const g = ctx.createLinearGradient(x, y, x + w, y + h);
+  if (bright) { g.addColorStop(0, '#fff6d9'); g.addColorStop(1, '#ffe39a'); } else { g.addColorStop(0, '#3b4a5e'); g.addColorStop(1, '#1d2533'); }
+  ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
+  ctx.fillStyle = bright ? 'rgba(200,150,40,.25)' : 'rgba(255,255,255,.10)';
+  ctx.beginPath(); ctx.arc(x + w/2, y + h*0.36, w*0.15, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(x + w/2 - w*0.29, y + h*0.53, w*0.58, h*0.6, w*0.25); ctx.fill();
+  ctx.restore();
+}
+function capsIn(x, y, w, h, t, ch, opts) { ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, w, h, 48); ctx.clip(); ctx.translate(x, y); drawCaptions(ctx, w, h, t, ch, { size: 1.15, pos: 0.7, tag: false, ...opts }); ctx.restore(); }
+function mark(ok, cx, cy, p) { ctx.save(); ctx.globalAlpha = ease(p * 3); const r = 70 * (0.6 + 0.4 * ease(p * 3)); ctx.fillStyle = ok ? G : P; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill(); ctx.strokeStyle = '#0d0b16'; ctx.lineWidth = 16; ctx.lineCap = 'round'; ctx.beginPath(); if (ok) { ctx.moveTo(cx - 30, cy); ctx.lineTo(cx - 8, cy + 24); ctx.lineTo(cx + 32, cy - 22); } else { ctx.moveTo(cx - 24, cy - 24); ctx.lineTo(cx + 24, cy + 24); ctx.moveTo(cx + 24, cy - 24); ctx.lineTo(cx - 24, cy + 24); } ctx.stroke(); ctx.restore(); }
+function logo(cx, cy, s = 1) { ctx.save(); ctx.translate(cx, cy); ctx.scale(s, s); ctx.rotate(-0.08); ctx.fillStyle = Y; ctx.beginPath(); ctx.roundRect(-300, -120, 600, 220, 48); ctx.fill(); ctx.strokeStyle = '#0d0b16'; ctx.lineWidth = 34; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(-170, -50); ctx.lineTo(-85, 60); ctx.lineTo(0, -35); ctx.lineTo(85, 60); ctx.lineTo(170, -50); ctx.stroke(); ctx.restore(); }
+function outro(p, line2 = 'Free · in your browser') { ctx.save(); ctx.globalAlpha = ease(p * 3); logo(W/2, 820); text('wordflare.app', W/2, 1140, "900 120px 'Inter'"); text(line2, W/2, 1240, "600 54px 'Inter'", L); text('Link in bio', W/2, 1400, "800 50px 'Inter'", Y); ctx.restore(); }
+function muted(cx, cy) { ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.beginPath(); ctx.arc(cx, cy, 60, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(cx - 30, cy - 14); ctx.lineTo(cx - 14, cy - 14); ctx.lineTo(cx + 6, cy - 32); ctx.lineTo(cx + 6, cy + 32); ctx.lineTo(cx - 14, cy + 14); ctx.lineTo(cx - 30, cy + 14); ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(cx + 18, cy - 14); ctx.lineTo(cx + 40, cy + 14); ctx.moveTo(cx + 40, cy - 14); ctx.lineTo(cx + 18, cy + 14); ctx.stroke(); ctx.restore(); }
+
+const CX = 150, CY = 560, CW = 780, CH = 900;
+
+// ---------- Reel 1: sound off ----------
+const S1 = cap('I tried every caption app so you do not have to', 4.4, 0.32);
+function sound(t) {
+  bg();
+  if (t < 4) {
+    text('Most people watch', W/2, 300, "900 92px 'Inter'"); text('with the sound OFF', W/2, 410, "900 92px 'Inter'", Y);
+    card(CX, CY, CW, CH); muted(CX + CW - 90, CY + 90);
+    if (t > 1.6) { text('No captions =', W/2, 1600, "800 64px 'Inter'", '#fff', 'center', ease((t - 1.6) * 2)); text('they keep scrolling', W/2, 1690, "800 64px 'Inter'", P, 'center', ease((t - 1.6) * 2)); mark(false, W/2, 1500 - 40, (t - 1.6)); }
+  } else if (t < 9.6) {
+    text('Same video', W/2, 300, "900 92px 'Inter'"); text('with captions', W/2, 410, "900 92px 'Inter'", Y);
+    card(CX, CY, CW, CH); muted(CX + CW - 90, CY + 90); capsIn(CX, CY, CW, CH, t, S1, { style: 'pop', color: Y });
+    if (t > 7.2) { text('Now they get it', W/2, 1640, "800 64px 'Inter'", G, 'center', ease((t - 7.2) * 2)); mark(true, W/2, 1500 - 40, t - 7.2); }
+  } else outro((t - 9.6) / 2.4, 'Animated captions, free');
+}
+
+// ---------- Reel 2: 3 mistakes ----------
+const M = [
+  { title: 'Mistake 1', sub: 'Full sentences on screen', bad: 'so today I want to tell you about the three things I learned', good: cap('Three things I learned', 0, 0.38), opts: { style: 'pop', color: Y } },
+  { title: 'Mistake 2', sub: 'Hidden under app buttons', good: cap('Watch this part', 0, 0.42), opts: { style: 'box', color: Y } },
+  { title: 'Mistake 3', sub: 'Low contrast', good: cap('Can you read this', 0, 0.38), opts: { style: 'box', color: Y } },
+];
+function appUI(x, y, w, h) { ctx.save(); ctx.fillStyle = 'rgba(255,92,138,.18)'; ctx.fillRect(x, y + h - 260, w, 260); ctx.fillStyle = 'rgba(255,255,255,.85)'; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(x + w - 60, y + h - 380 + i * 95, 32, 0, Math.PI*2); ctx.fill(); } ctx.beginPath(); ctx.roundRect(x + 40, y + h - 120, w * 0.45, 26, 13); ctx.fill(); ctx.beginPath(); ctx.roundRect(x + 40, y + h - 75, w * 0.7, 26, 13); ctx.fill(); ctx.restore(); }
+function mistakes(t) {
+  bg(); const SC = 4.6;
+  if (t < 1.4) { text('3 caption', W/2, 760, "900 130px 'Inter'"); text('mistakes', W/2, 900, "900 130px 'Inter'"); text('killing your Reels', W/2, 1030, "900 90px 'Inter'", Y); return; }
+  const tt = t - 1.4, k = Math.floor(tt / SC);
+  if (k >= 3) return outro((tt - 3 * SC) / 2.4, 'Fix all 3 for free');
+  const m = M[k], lt = tt - k * SC, good = lt > 2.0;
+  text(m.title, W/2, 300, "800 54px 'Inter'", P); text(m.sub, W/2, 400, "900 74px 'Inter'");
+  const bright = k === 2; card(CX, CY, CW, CH, bright);
+  const g = m.good.map(c => ({ ...c, start: c.start + 2.1, end: c.end + 2.1, words: c.words.map(w => ({ ...w, start: w.start + 2.1, end: w.end + 2.1 })) }));
+  if (k === 1) appUI(CX, CY, CW, CH);
+  if (!good) {
+    if (k === 0) { ctx.save(); ctx.font = "600 34px 'Inter'"; ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.shadowColor = '#000'; ctx.shadowBlur = 6; const lines = ['so today I want to tell you about the', 'three things I learned when I started', 'posting videos every single day']; lines.forEach((s, i) => ctx.fillText(s, W/2, CY + 600 + i * 46)); ctx.restore(); }
+    if (k === 1) capsIn(CX, CY, CW, CH, 2.9, g, { ...m.opts, pos: 0.88 });
+    if (k === 2) capsIn(CX, CY, CW, CH, 2.9, g, { style: 'clean', color: '#FFFFFF' });
+    mark(false, W/2, 1600, lt);
+  } else {
+    capsIn(CX, CY, CW, CH, lt, g, { ...m.opts, pos: k === 1 ? 0.55 : 0.7 });
+    mark(true, W/2, 1600, lt - 2.0);
+  }
+}
+
+// ---------- Reel 3: how it works ----------
+const S3 = cap('Captions in seconds right in your browser', 7.6, 0.34);
+function how(t) {
+  bg();
+  if (t < 1.5) { text('Caption a Reel', W/2, 820, "900 110px 'Inter'"); text('in 3 steps', W/2, 950, "900 110px 'Inter'", Y); text('(free)', W/2, 1060, "700 60px 'Inter'", L); return; }
+  const step = t < 4 ? 1 : t < 7 ? 2 : t < 11.4 ? 3 : 4;
+  if (step === 4) return outro((t - 11.4) / 2.4);
+  const titles = { 1: 'Drop your video', 2: 'AI writes the captions', 3: 'Pick a style & export' };
+  const subs = { 1: 'MP4 · MOV · WebM', 2: 'Inside your browser. Nothing uploaded.', 3: 'Pop · Box · Karaoke · Clean · Neon' };
+  text(String(step), W/2, 330, "900 150px 'Inter'", Y); text(titles[step], W/2, 470, "900 82px 'Inter'"); text(subs[step], W/2, 560, "600 46px 'Inter'", L);
+  if (step === 1) {
+    const p = ease((t - 1.5) / 1.2);
+    ctx.save(); ctx.setLineDash([26, 18]); ctx.lineWidth = 8; ctx.strokeStyle = Y; ctx.beginPath(); ctx.roundRect(140, 760, 800, 640, 56); ctx.stroke(); ctx.restore();
+    const fy = 560 + p * 420; card(390, fy, 300, 400);
+    text(p >= 1 ? 'Loaded ✓' : 'Drop it here', W/2, 1520, "800 60px 'Inter'", p >= 1 ? G : '#fff');
+  } else if (step === 2) {
+    card(CX, 700, CW, 800);
+    const p = Math.min(1, (t - 4) / 2.4);
+    ctx.save(); ctx.fillStyle = '#3a2f63'; ctx.beginPath(); ctx.roundRect(190, 1580, 700, 24, 12); ctx.fill(); const g = ctx.createLinearGradient(190, 0, 890, 0); g.addColorStop(0, Y); g.addColorStop(1, P); ctx.fillStyle = g; ctx.beginPath(); ctx.roundRect(190, 1580, 700 * p, 24, 12); ctx.fill(); ctx.restore();
+    text(p < 1 ? 'Transcribing… ' + Math.round(p * 100) + '%' : 'Done ✓', W/2, 1690, "800 54px 'Inter'", p < 1 ? '#fff' : G);
+  } else {
+    card(CX, 700, CW, 800); capsIn(CX, 700, CW, 800, t, S3, { style: t < 9.5 ? 'pop' : 'karaoke', color: t < 9.5 ? Y : P });
+    pill(t < 9.5 ? 'Pop' : 'Karaoke', W/2, 1560, Y);
+  }
+}
+
+const reels = { sound: [sound, 12.0], mistakes: [mistakes, 1.4 + 3 * 4.6 + 2.4], how: [how, 13.8] };
+const [fn, dur] = reels[R];
+window.TOTAL_FRAMES = Math.round(dur * FPS);
+window.renderFrame = (i) => { fn(i / FPS); return c.toDataURL('image/jpeg', 0.9); };
+await document.fonts.load("900 40px 'Inter'"); await document.fonts.load("800 40px 'Inter'"); await document.fonts.load("600 40px 'Inter'");
+window.READY = true;
+</script>
