@@ -75,7 +75,9 @@ function handleFiles(files) {
   const vids = files.filter((f) => f.type.startsWith('video/') || /\.(mp4|mov|m4v|webm|mkv)$/i.test(f.name));
   if (!vids.length) { if (files.length) showError(t.errors.notVideo); return; }
   if (vids.length > 1) openDoor('batch', t);
-  start(vids[0]);
+  const f = vids[0];
+  track('file_picked', { count: vids.length, type: f.type || 'unknown', size_mb: Math.round(f.size / 1e6) });
+  start(f);
 }
 
 /* ---------------- pipeline ---------------- */
@@ -139,18 +141,28 @@ async function start(file, langOverride) {
 }
 
 function loadVideo(url) {
+  // iOS Safari often never fires `loadeddata` until playback starts, so we also
+  // accept `loadedmetadata` (dimensions + duration are enough to continue) and
+  // give up after a timeout instead of leaving the spinner up forever.
   return new Promise((resolve, reject) => {
+    let timer;
     const done = () => {
+      if (!video.videoWidth || !video.videoHeight) return; // wait for the next event
       cleanup();
       state.duration = video.duration || 0;
       state.w = video.videoWidth; state.h = video.videoHeight;
-      if (!state.w || !state.h || !isFinite(state.duration)) return reject(new Error('no video dimensions'));
+      if (!isFinite(state.duration) || state.duration <= 0) return reject(new Error('no video duration'));
       resolve();
     };
     const err = () => { cleanup(); reject(new Error(`video error ${video.error?.code || ''}`)); };
-    const cleanup = () => { video.removeEventListener('loadeddata', done); video.removeEventListener('error', err); };
-    video.addEventListener('loadeddata', done, { once: true });
+    const cleanup = () => {
+      clearTimeout(timer);
+      ['loadedmetadata', 'loadeddata', 'canplay'].forEach((ev) => video.removeEventListener(ev, done));
+      video.removeEventListener('error', err);
+    };
+    ['loadedmetadata', 'loadeddata', 'canplay'].forEach((ev) => video.addEventListener(ev, done));
     video.addEventListener('error', err, { once: true });
+    timer = setTimeout(() => { cleanup(); reject(new Error('video load timeout')); }, CONFIG.VIDEO_LOAD_TIMEOUT_MS || 20000);
     video.src = url;
     video.load();
   });
