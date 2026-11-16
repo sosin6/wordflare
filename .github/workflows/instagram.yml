@@ -1,0 +1,42 @@
+name: Instagram publisher
+# Publishes approved, due posts from content/instagram/queue.json (see scripts/ig-publish.mjs).
+on:
+  schedule:
+    - cron: '7 * * * *'          # every hour at :07 UTC
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'check = only verify the connection; publish = post what is due'
+        default: check
+        type: choice
+        options: [check, publish]
+permissions:
+  contents: write
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Check connection
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'check'
+        env: { IG_ACCESS_TOKEN: '${{ secrets.IG_ACCESS_TOKEN }}', IG_USER_ID: '${{ secrets.IG_USER_ID }}' }
+        run: node scripts/ig-publish.mjs --check
+      - name: Publish due posts
+        if: github.event_name == 'schedule' || inputs.mode == 'publish'
+        env: { IG_ACCESS_TOKEN: '${{ secrets.IG_ACCESS_TOKEN }}', IG_USER_ID: '${{ secrets.IG_USER_ID }}' }
+        run: node scripts/ig-publish.mjs
+      - name: Save what was published
+        if: always() && (github.event_name == 'schedule' || inputs.mode == 'publish')
+        run: |
+          if ! git diff --quiet content/instagram/published.json; then
+            git config user.name "wordflare-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content/instagram/published.json
+            git commit -m "Instagram: update published log [skip ci]"
+            git push
+          fi

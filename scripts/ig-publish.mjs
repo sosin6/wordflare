@@ -1,0 +1,145 @@
+// Publishes approved, due items from content/instagram/queue.json to Instagram
+// using the official Instagram Graph API (Facebook Login, system-user token).
+//
+//   node scripts/ig-publish.mjs            publish what is due (used by .github/workflows/instagram.yml)
+//   node scripts/ig-publish.mjs --check    verify the token and show the connected account (no posting)
+//   node scripts/ig-publish.mjs --validate check the queue and local media files (no network)
+//
+// Env: IG_ACCESS_TOKEN (required for --check / publish), IG_USER_ID (optional, auto-discovered),
+//      GRAPH_VERSION (default v24.0), SITE (default https://wordflare.app), NOW (ISO, for tests).
+// State of what was already posted lives in content/instagram/published.json (committed by the workflow).
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const QUEUE = path.join(ROOT, 'content/instagram/queue.json');
+const STATE = path.join(ROOT, 'content/instagram/published.json');
+const SITE = (process.env.SITE || 'https://wordflare.app').replace(/\/$/, '');
+const GV = process.env.GRAPH_VERSION || 'v24.0';
+const API = process.env.GRAPH_API || `https://graph.facebook.com/${GV}`;
+const TOKEN = process.env.IG_ACCESS_TOKEN || '';
+const NOW = process.env.NOW ? new Date(process.env.NOW) : new Date();
+const FEED_GAP_H = 20;      // never two feed posts closer than this (spreads a backlog one per day)
+const MAX_STORIES = 3;      // per run
+const mode = process.argv[2] || '';
+
+const FEED = new Set(['REELS', 'CAROUSEL', 'IMAGE']);
+const TYPES = new Set([...FEED, 'STORY']);
+const isVideo = p => /\.(mp4|mov)$/i.test(p);
+
+const queue = JSON.parse(readFileSync(QUEUE, 'utf8'));
+const state = existsSync(STATE) ? JSON.parse(readFileSync(STATE, 'utf8')) : {};
+const saveState = () => writeFileSync(STATE, JSON.stringify(state, null, 2) + '\n');
+
+function validate() {
+  const ids = new Set(); const errs = [];
+  for (const it of queue) {
+    const tag = it.id || '(no id)';
+    if (!it.id || ids.has(it.id)) errs.push(`${tag}: missing or duplicate id`); ids.add(it.id);
+    if (!TYPES.has(it.type)) errs.push(`${tag}: bad type ${it.type}`);
+    if (isNaN(new Date(it.at))) errs.push(`${tag}: bad date`);
+    if (!Array.isArray(it.media) || !it.media.length) errs.push(`${tag}: no media`);
+    for (const m of it.media || []) {
+      if (!existsSync(path.join(ROOT, 'public', m))) errs.push(`${tag}: missing public/${m}`);
+      if (!isVideo(m) && !/\.jpe?g$/i.test(m)) errs.push(`${tag}: images must be JPEG (${m})`);
+    }
+    if (it.type === 'CAROUSEL' && (it.media.length < 2 || it.media.length > 10)) errs.push(`${tag}: carousel needs 2-10 items`);
+    if (it.type === 'REELS' && !isVideo(it.media[0])) errs.push(`${tag}: reel needs a video`);
+    if (it.type !== 'STORY' && (it.caption || '').length > 2200) errs.push(`${tag}: caption > 2200`);
+  }
+  return errs;
+}
+
+async function g(method, p, params = {}) {
+  const url = new URL(API + p); const body = new URLSearchParams({ ...params, access_token: TOKEN });
+  const opt = { method };
+  if (method === 'GET') { for (const [k, v] of body) url.searchParams.set(k, v); } else opt.body = body;
+  const r = await fetch(url, opt); const j = await r.json().catch(() => ({}));
+  if (!r.ok || j.error) throw new Error(`${method} ${p}: ${j.error?.message || r.status}`);
+  return j;
+}
+
+async function igUserId() {
+  if (process.env.IG_USER_ID) return process.env.IG_USER_ID;
+  const j = await g('GET', '/me/accounts', { fields: 'name,instagram_business_account{id,username}' });
+  const page = (j.data || []).find(p => p.instagram_business_account);
+  if (!page) throw new Error('No Facebook Page with a linked Instagram professional account is visible to this token.');
+  return page.instagram_business_account.id;
+}
+
+async function waitReady(id) {
+  for (let i = 0; i < 40; i++) {           // up to ~10 min for video processing
+    const j = await g('GET', '/' + id, { fields: 'status_code,status' });
+    if (j.status_code === 'FINISHED') return;
+    if (j.status_code === 'ERROR' || j.status_code === 'EXPIRED') throw new Error(`container ${id}: ${j.status_code} ${j.status || ''}`);
+    await new Promise(r => setTimeout(r, 15000));
+  }
+  throw new Error(`container ${id}: timeout`);
+}
+
+async function assertPublic(m) {
+  const r = await fetch(`${SITE}/${m}`, { method: 'HEAD' });
+  if (!r.ok) throw new Error(`media not live yet: ${SITE}/${m} (${r.status})`);
+}
+
+async function publish(ig, it) {
+  for (const m of it.media) await assertPublic(m);
+  const u = m => `${SITE}/${m}`; let cid;
+  if (it.type === 'REELS') {
+    cid = (await g('POST', `/${ig}/media`, { media_type: 'REELS', video_url: u(it.media[0]), caption: it.caption || '', share_to_feed: 'true' })).id;
+  } else if (it.type === 'IMAGE') {
+    cid = (await g('POST', `/${ig}/media`, { image_url: u(it.media[0]), caption: it.caption || '' })).id;
+  } else if (it.type === 'STORY') {
+    const m = it.media[0];
+    cid = (await g('POST', `/${ig}/media`, isVideo(m) ? { media_type: 'STORIES', video_url: u(m) } : { media_type: 'STORIES', image_url: u(m) })).id;
+  } else {
+    const kids = [];
+    for (const m of it.media) kids.push((await g('POST', `/${ig}/media`, isVideo(m) ? { media_type: 'VIDEO', video_url: u(m), is_carousel_item: 'true' } : { image_url: u(m), is_carousel_item: 'true' })).id);
+    for (const k of kids) await waitReady(k);
+    cid = (await g('POST', `/${ig}/media`, { media_type: 'CAROUSEL', children: kids.join(','), caption: it.caption || '' })).id;
+  }
+  await waitReady(cid);
+  const mid = (await g('POST', `/${ig}/media_publish`, { creation_id: cid })).id;
+  let permalink = null; try { permalink = (await g('GET', '/' + mid, { fields: 'permalink' })).permalink; } catch {}
+  return { media_id: mid, permalink };
+}
+
+const errs = validate();
+if (errs.length) { console.error('Queue problems:\n- ' + errs.join('\n- ')); process.exit(1); }
+if (mode === '--validate') { console.log(`queue OK (${queue.length} items)`); process.exit(0); }
+if (!TOKEN) { console.error('IG_ACCESS_TOKEN is not set (GitHub > Settings > Secrets and variables > Actions).'); process.exit(mode === '--check' ? 1 : 0); }
+
+if (mode === '--check') {
+  const ig = await igUserId();
+  const j = await g('GET', '/' + ig, { fields: 'username,media_count' });
+  const lim = await g('GET', `/${ig}/content_publishing_limit`, { fields: 'quota_usage,config' }).catch(() => null);
+  console.log(`Connected to @${j.username} (id ${ig}, ${j.media_count} posts). Publishing quota: ${JSON.stringify(lim?.data?.[0] || 'n/a')}`);
+  process.exit(0);
+}
+
+const due = queue.filter(it => it.approved === true && !state[it.id]?.media_id && (state[it.id]?.tries || 0) < 3 && new Date(it.at) <= NOW)
+  .sort((a, b) => new Date(a.at) - new Date(b.at));
+if (!due.length) { console.log('Nothing due.'); process.exit(0); }
+
+const lastFeed = Math.max(0, ...Object.values(state).filter(s => s.media_id && s.feed).map(s => new Date(s.published_at).getTime()));
+let feedLeft = (NOW - lastFeed) / 36e5 >= FEED_GAP_H ? 1 : 0, storiesLeft = MAX_STORIES, failed = 0;
+const ig = await igUserId();
+for (const it of due) {
+  const feed = FEED.has(it.type);
+  if (feed ? feedLeft <= 0 : storiesLeft <= 0) continue;
+  // a story that belongs to a feed post waits until that post is out
+  if (it.after && !state[it.after]?.media_id) continue;
+  try {
+    const r = await publish(ig, it);
+    state[it.id] = { ...r, feed, published_at: NOW.toISOString() };
+    console.log(`published ${it.id} ${r.permalink || r.media_id}`);
+    feed ? feedLeft-- : storiesLeft--;
+  } catch (e) {
+    failed++; state[it.id] = { ...(state[it.id] || {}), last_error: e.message, tries: (state[it.id]?.tries || 0) + 1, failed_at: new Date().toISOString() };
+    console.error(`FAILED ${it.id}: ${e.message}`);
+    if (feed) feedLeft--;
+  }
+  saveState();
+}
+saveState();
+process.exit(failed ? 1 : 0);

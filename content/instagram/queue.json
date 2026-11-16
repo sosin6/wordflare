@@ -1,0 +1,114 @@
+[
+ {
+  "id": "w3-reel-sound",
+  "at": "2026-11-17T21:00:00Z",
+  "type": "REELS",
+  "approved": true,
+  "media": [
+   "social/ig/w3/reel-sound.mp4"
+  ],
+  "caption": "Most people watch Reels with the sound OFF 🔇\n\nNo captions = they scroll past before you say a word.\n\nAdd animated captions free, right in your browser 👉 wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-sound",
+  "at": "2026-11-17T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-reel-sound",
+  "media": [
+   "social/ig/w3/reel-sound.mp4"
+  ]
+ },
+ {
+  "id": "w3-carousel-styles",
+  "at": "2026-11-18T21:00:00Z",
+  "type": "CAROUSEL",
+  "approved": true,
+  "media": [
+   "social/ig/w3/carousel-c-1.jpg",
+   "social/ig/w3/carousel-c-2.jpg",
+   "social/ig/w3/carousel-c-3.jpg",
+   "social/ig/w3/carousel-c-4.jpg",
+   "social/ig/w3/carousel-c-5.jpg",
+   "social/ig/w3/carousel-c-6.jpg",
+   "social/ig/w3/carousel-c-7.jpg"
+  ],
+  "caption": "Which caption style fits your video? 👇\n\nPop: talking-head Reels\nBox: bright or busy backgrounds\nKaraoke: podcast clips and storytelling\nClean: tutorials and business\nNeon: gaming and night shots\n\nComment the style you'd pick 💬\nTry all 5 free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-styles",
+  "at": "2026-11-18T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-carousel-styles",
+  "media": [
+   "social/ig/w3/carousel-c-1.jpg"
+  ]
+ },
+ {
+  "id": "w3-reel-steps",
+  "at": "2026-11-19T21:00:00Z",
+  "type": "REELS",
+  "approved": true,
+  "media": [
+   "social/ig/w3/reel-how.mp4"
+  ],
+  "caption": "Captions in 3 steps ✨\n\n1. Drop your video\n2. AI writes the captions (in your browser, nothing is uploaded)\n3. Pick a style and export\n\nFree, no sign-up: wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-steps",
+  "at": "2026-11-19T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-reel-steps",
+  "media": [
+   "social/ig/w3/reel-how.mp4"
+  ]
+ },
+ {
+  "id": "w3-reel-mistakes",
+  "at": "2026-11-21T21:00:00Z",
+  "type": "REELS",
+  "approved": true,
+  "media": [
+   "social/ig/w3/reel-mistakes.mp4"
+  ],
+  "caption": "3 caption mistakes that make people scroll 👀\n\nWhich one are you making? Tell me below 👇\n\nFix them free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-mistakes",
+  "at": "2026-11-21T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-reel-mistakes",
+  "media": [
+   "social/ig/w3/reel-mistakes.mp4"
+  ]
+ },
+ {
+  "id": "w3-carousel-details",
+  "at": "2026-11-22T21:00:00Z",
+  "type": "CAROUSEL",
+  "approved": true,
+  "media": [
+   "social/ig/w3/carousel-d-1.jpg",
+   "social/ig/w3/carousel-d-2.jpg",
+   "social/ig/w3/carousel-d-3.jpg",
+   "social/ig/w3/carousel-d-4.jpg",
+   "social/ig/w3/carousel-d-5.jpg",
+   "social/ig/w3/carousel-d-6.jpg",
+   "social/ig/w3/carousel-d-7.jpg"
+  ],
+  "caption": "5 tiny caption details that make your videos look pro ✨\n\n1. One highlight per line\n2. Captions from the first word\n3. Fix names by hand\n4. Same style every video\n5. Check it on a phone\n\nSave this for your next edit 📌\nFree animated captions: wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-details",
+  "at": "2026-11-22T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-carousel-details",
+  "media": [
+   "social/ig/w3/carousel-d-4.jpg"
+  ]
+ }
+]
