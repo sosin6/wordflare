@@ -93,7 +93,7 @@ const trackInfo = a => ({ audio_id: String(a.id || a.audio_id || a.audio_asset_i
 async function listAudio(ig, search) {
   const p = { audio_type: 'music', user_id: ig }; if (search) p.search_query = search;
   const j = await g('GET', '/ig_audio', p);
-  return (j.data || []).map(a => ({ ...trackInfo(a), raw: a })).filter(a => a.audio_id);
+  return (j.audio || j.data || []).map(a => ({ ...trackInfo(a), raw: a })).filter(a => a.audio_id);
 }
 
 async function pickAudio(ig, it) {
@@ -152,14 +152,9 @@ if (mode === '--check') {
 
 if (mode === '--audio') {
   const ig = await igUserId();
-  for (const [t, q] of [['music', ''], ['music', 'pop'], ['original_sound', '']]) {
-    const raw = await g('GET', '/ig_audio', { audio_type: t, user_id: ig, ...(q ? { search_query: q } : {}) }).catch(e => ({ error: e.message }));
-    console.log(`raw ${t}${q ? ' "' + q + '"' : ''}:`, JSON.stringify(raw).slice(0, 600));
-  }
   const list = await listAudio(ig, process.argv[3] || '');
   console.log(`${list.length} tracks. Trending music for this account:`);
-  for (const a of list.slice(0, 15)) console.log(`- ${a.artist} - ${a.title} (id ${a.audio_id})`);
-  if (list[0]) console.log('first item fields:', Object.keys(list[0].raw).join(', '));
+  for (const a of list.slice(0, 15)) console.log(`- ${a.artist} - ${a.title} (${Math.round((a.raw.duration_in_ms || 0) / 1000)} s, id ${a.audio_id})`);
   process.exit(0);
 }
 
