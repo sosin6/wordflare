@@ -152,6 +152,10 @@ if (mode === '--check') {
 
 if (mode === '--audio') {
   const ig = await igUserId();
+  for (const [t, q] of [['music', ''], ['music', 'pop'], ['original_sound', '']]) {
+    const raw = await g('GET', '/ig_audio', { audio_type: t, user_id: ig, ...(q ? { search_query: q } : {}) }).catch(e => ({ error: e.message }));
+    console.log(`raw ${t}${q ? ' "' + q + '"' : ''}:`, JSON.stringify(raw).slice(0, 600));
+  }
   const list = await listAudio(ig, process.argv[3] || '');
   console.log(`${list.length} tracks. Trending music for this account:`);
   for (const a of list.slice(0, 15)) console.log(`- ${a.artist} - ${a.title} (id ${a.audio_id})`);
