@@ -4,6 +4,12 @@
 //   node scripts/ig-publish.mjs            publish what is due (used by .github/workflows/instagram.yml)
 //   node scripts/ig-publish.mjs --check    verify the token and show the connected account (no posting)
 //   node scripts/ig-publish.mjs --validate check the queue and local media files (no network)
+//   node scripts/ig-publish.mjs --audio    list the trending music the Audio API offers this account
+//
+// Reels can carry Instagram library music (Audio API, Facebook Login only): queue item
+// "music": "trending" (top trending track not used in the last 10 posts), {"search": "..."} or
+// {"audio_id": "..."}; optional "video_volume" (0-100, default 0 = only the song) and "music_volume".
+// If attaching music fails, the Reel is still published without it and the error is logged.
 //
 // Env: IG_ACCESS_TOKEN (required for --check / publish), IG_USER_ID (optional, auto-discovered),
 //      GRAPH_VERSION (default v24.0), SITE (default https://wordflare.app), NOW (ISO, for tests).
@@ -82,11 +88,38 @@ async function assertPublic(m) {
   if (!r.ok) throw new Error(`media not live yet: ${SITE}/${m} (${r.status})`);
 }
 
+const trackInfo = a => ({ audio_id: String(a.id || a.audio_id || a.audio_asset_id || ''), title: a.title || a.name || a.song_name || '', artist: a.display_artist || a.artist || a.artist_name || '' });
+
+async function listAudio(ig, search) {
+  const p = { audio_type: 'music', user_id: ig }; if (search) p.search_query = search;
+  const j = await g('GET', '/ig_audio', p);
+  return (j.data || []).map(a => ({ ...trackInfo(a), raw: a })).filter(a => a.audio_id);
+}
+
+async function pickAudio(ig, it) {
+  const m = it.music; if (!m) return null;
+  if (m.audio_id) return { audio_id: String(m.audio_id), title: m.title || '', artist: m.artist || '' };
+  const recent = new Set(Object.values(state).filter(s => s.audio_id).sort((a, b) => (b.published_at || '').localeCompare(a.published_at || '')).slice(0, 10).map(s => s.audio_id));
+  const list = await listAudio(ig, m.search || '');
+  const t = list.find(a => !recent.has(a.audio_id)) || list[0];
+  if (!t) throw new Error('Audio API returned no tracks');
+  return { audio_id: t.audio_id, title: t.title, artist: t.artist };
+}
+
 async function publish(ig, it) {
   for (const m of it.media) await assertPublic(m);
   const u = m => `${SITE}/${m}`; let cid;
+  let music = null, music_error = null;
   if (it.type === 'REELS') {
-    cid = (await g('POST', `/${ig}/media`, { media_type: 'REELS', video_url: u(it.media[0]), caption: it.caption || '', share_to_feed: 'true' })).id;
+    const base = { media_type: 'REELS', video_url: u(it.media[0]), caption: it.caption || '', share_to_feed: 'true' };
+    if (it.music) {
+      try {
+        music = await pickAudio(ig, it);
+        const conf = { audio_id: music.audio_id, audio_volume: it.music_volume ?? 100, video_volume: it.video_volume ?? 0 };
+        cid = (await g('POST', `/${ig}/media`, { ...base, audio_configuration: JSON.stringify(conf) })).id;
+      } catch (e) { music_error = e.message; music = null; console.error(`music skipped for ${it.id}: ${e.message}`); }
+    }
+    if (!cid) cid = (await g('POST', `/${ig}/media`, base)).id;
   } else if (it.type === 'IMAGE') {
     cid = (await g('POST', `/${ig}/media`, { image_url: u(it.media[0]), caption: it.caption || '' })).id;
   } else if (it.type === 'STORY') {
@@ -101,7 +134,7 @@ async function publish(ig, it) {
   await waitReady(cid);
   const mid = (await g('POST', `/${ig}/media_publish`, { creation_id: cid })).id;
   let permalink = null; try { permalink = (await g('GET', '/' + mid, { fields: 'permalink' })).permalink; } catch {}
-  return { media_id: mid, permalink };
+  return { media_id: mid, permalink, ...(music ? { audio_id: music.audio_id, song: `${music.artist} - ${music.title}` } : {}), ...(music_error ? { music_error } : {}) };
 }
 
 const errs = validate();
@@ -114,6 +147,15 @@ if (mode === '--check') {
   const j = await g('GET', '/' + ig, { fields: 'username,media_count' });
   const lim = await g('GET', `/${ig}/content_publishing_limit`, { fields: 'quota_usage,config' }).catch(() => null);
   console.log(`Connected to @${j.username} (id ${ig}, ${j.media_count} posts). Publishing quota: ${JSON.stringify(lim?.data?.[0] || 'n/a')}`);
+  process.exit(0);
+}
+
+if (mode === '--audio') {
+  const ig = await igUserId();
+  const list = await listAudio(ig, process.argv[3] || '');
+  console.log(`${list.length} tracks. Trending music for this account:`);
+  for (const a of list.slice(0, 15)) console.log(`- ${a.artist} - ${a.title} (id ${a.audio_id})`);
+  if (list[0]) console.log('first item fields:', Object.keys(list[0].raw).join(', '));
   process.exit(0);
 }
 

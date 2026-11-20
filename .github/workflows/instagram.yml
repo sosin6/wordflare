@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'check = only verify the connection; publish = post what is due'
+        description: 'check = verify the connection; audio = list trending music; publish = post what is due'
         default: check
         type: choice
-        options: [check, publish]
+        options: [check, audio, publish]
 permissions:
   contents: write
 concurrency:
@@ -26,6 +26,10 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'check'
         env: { IG_ACCESS_TOKEN: '${{ secrets.IG_ACCESS_TOKEN }}', IG_USER_ID: '${{ secrets.IG_USER_ID }}' }
         run: node scripts/ig-publish.mjs --check
+      - name: List trending music
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'audio'
+        env: { IG_ACCESS_TOKEN: '${{ secrets.IG_ACCESS_TOKEN }}', IG_USER_ID: '${{ secrets.IG_USER_ID }}' }
+        run: node scripts/ig-publish.mjs --audio
       - name: Publish due posts
         if: github.event_name == 'schedule' || inputs.mode == 'publish'
         env: { IG_ACCESS_TOKEN: '${{ secrets.IG_ACCESS_TOKEN }}', IG_USER_ID: '${{ secrets.IG_USER_ID }}' }
