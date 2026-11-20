@@ -100,9 +100,15 @@ async function pickAudio(ig, it) {
   const m = it.music; if (!m) return null;
   if (m.audio_id) return { audio_id: String(m.audio_id), title: m.title || '', artist: m.artist || '' };
   const recent = new Set(Object.values(state).filter(s => s.audio_id).sort((a, b) => (b.published_at || '').localeCompare(a.published_at || '')).slice(0, 10).map(s => s.audio_id));
-  const list = await listAudio(ig, m.search || '');
+  // The Audio API sometimes answers with an empty list: retry, then fall back to broad searches.
+  let list = [];
+  const tries = [m.search || '', m.search || '', 'pop', 'upbeat', 'dance'];
+  for (let i = 0; i < tries.length && !list.length; i++) {
+    if (i) await new Promise(r => setTimeout(r, 4000));
+    list = await listAudio(ig, tries[i]).catch(e => { console.error(`audio search "${tries[i]}": ${e.message}`); return []; });
+  }
   const t = list.find(a => !recent.has(a.audio_id)) || list[0];
-  if (!t) throw new Error('Audio API returned no tracks');
+  if (!t) throw new Error('Audio API returned no tracks (after retries)');
   return { audio_id: t.audio_id, title: t.title, artist: t.artist };
 }
 
