@@ -61,7 +61,7 @@ async function g(method, p, params = {}) {
   const opt = { method };
   if (method === 'GET') { for (const [k, v] of body) url.searchParams.set(k, v); } else opt.body = body;
   const r = await fetch(url, opt); const j = await r.json().catch(() => ({}));
-  if (!r.ok || j.error) throw new Error(`${method} ${p}: ${j.error?.message || r.status}`);
+  if (!r.ok || j.error) throw new Error(`${method} ${p}: ${j.error?.message || r.status}${j.error ? ` (code ${j.error.code}${j.error.error_subcode ? "/" + j.error.error_subcode : ""}${j.error.type ? ", " + j.error.type : ""})` : ""}`);
   return j;
 }
 
