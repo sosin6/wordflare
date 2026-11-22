@@ -11,5 +11,10 @@
     "permalink": "https://www.instagram.com/stories/wordflare.app/4034838875389674965",
     "feed": false,
     "published_at": "2026-11-20T21:30:50.122Z"
+  },
+  "_account_error": {
+    "message": "GET /me/accounts: API access blocked. (code 200/5258005, OAuthException)",
+    "since": "2026-11-22T03:54:27.523Z",
+    "last_seen": "2026-11-22T03:54:27.523Z"
   }
 }
