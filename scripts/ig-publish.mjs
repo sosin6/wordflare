@@ -99,7 +99,7 @@ async function listAudio(ig, search) {
 async function pickAudio(ig, it) {
   const m = it.music; if (!m) return null;
   if (m.audio_id) return { audio_id: String(m.audio_id), title: m.title || '', artist: m.artist || '' };
-  const recent = new Set(Object.values(state).filter(s => s.audio_id).sort((a, b) => (b.published_at || '').localeCompare(a.published_at || '')).slice(0, 10).map(s => s.audio_id));
+  const recent = new Set(Object.values(state).filter(s => s && s.audio_id).sort((a, b) => (b.published_at || '').localeCompare(a.published_at || '')).slice(0, 10).map(s => s.audio_id));
   // The Audio API sometimes answers with an empty list: retry, then fall back to broad searches.
   let list = [];
   const tries = [m.search || '', m.search || '', 'pop', 'upbeat', 'dance'];
@@ -168,9 +168,20 @@ const due = queue.filter(it => it.approved === true && !state[it.id]?.media_id &
   .sort((a, b) => new Date(a.at) - new Date(b.at));
 if (!due.length) { console.log('Nothing due.'); process.exit(0); }
 
-const lastFeed = Math.max(0, ...Object.values(state).filter(s => s.media_id && s.feed).map(s => new Date(s.published_at).getTime()));
+const lastFeed = Math.max(0, ...Object.values(state).filter(s => s && s.media_id && s.feed).map(s => new Date(s.published_at).getTime()));
 let feedLeft = (NOW - lastFeed) / 36e5 >= FEED_GAP_H ? 1 : 0, storiesLeft = MAX_STORIES, failed = 0;
-const ig = await igUserId();
+// Account-level problems (token revoked, app blocked by Meta) are recorded once in the log instead of
+// failing every hourly run (which emails the owner each hour). Items stay queued until access is back.
+let ig;
+try { ig = await igUserId(); }
+catch (e) {
+  const prev = state._account_error;
+  state._account_error = { message: e.message, since: prev?.message === e.message ? prev.since : NOW.toISOString(), last_seen: NOW.toISOString() };
+  saveState();
+  console.error(`ACCOUNT ERROR (not posting, will retry next run): ${e.message}`);
+  process.exit(0);
+}
+if (state._account_error) { delete state._account_error; saveState(); }
 for (const it of due) {
   const feed = FEED.has(it.type);
   if (feed ? feedLeft <= 0 : storiesLeft <= 0) continue;
