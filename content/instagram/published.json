@@ -15,6 +15,6 @@
   "_account_error": {
     "message": "GET /me/accounts: API access blocked. (code 200/5258005, OAuthException)",
     "since": "2026-11-22T03:54:27.523Z",
-    "last_seen": "2026-11-22T19:50:01.335Z"
+    "last_seen": "2026-11-22T20:44:45.287Z"
   }
 }
