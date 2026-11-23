@@ -21,74 +21,6 @@
   ]
  },
  {
-  "id": "w3-carousel-styles",
-  "at": "2026-11-21T21:00:00Z",
-  "type": "CAROUSEL",
-  "approved": true,
-  "media": [
-   "social/ig/w3/carousel-c-1.jpg",
-   "social/ig/w3/carousel-c-2.jpg",
-   "social/ig/w3/carousel-c-3.jpg",
-   "social/ig/w3/carousel-c-4.jpg",
-   "social/ig/w3/carousel-c-5.jpg",
-   "social/ig/w3/carousel-c-6.jpg",
-   "social/ig/w3/carousel-c-7.jpg"
-  ],
-  "caption": "Which caption style fits your video? 👇\n\nPop: talking-head Reels\nBox: bright or busy backgrounds\nKaraoke: podcast clips and storytelling\nClean: tutorials and business\nNeon: gaming and night shots\n\nComment the style you'd pick 💬\nTry all 5 free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
- },
- {
-  "id": "w3-story-styles",
-  "at": "2026-11-21T21:00:00Z",
-  "type": "STORY",
-  "approved": true,
-  "after": "w3-carousel-styles",
-  "media": [
-   "social/ig/w3/carousel-c-1.jpg"
-  ]
- },
- {
-  "id": "w3-reel-steps",
-  "at": "2026-11-22T21:00:00Z",
-  "type": "REELS",
-  "approved": true,
-  "media": [
-   "social/ig/w3/reel-how.mp4"
-  ],
-  "caption": "Captions in 3 steps ✨\n\n1. Drop your video\n2. AI writes the captions (in your browser, nothing is uploaded)\n3. Pick a style and export\n\nFree, no sign-up: wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles",
-  "music": "trending"
- },
- {
-  "id": "w3-story-steps",
-  "at": "2026-11-22T21:00:00Z",
-  "type": "STORY",
-  "approved": true,
-  "after": "w3-reel-steps",
-  "media": [
-   "social/ig/w3/reel-how.mp4"
-  ]
- },
- {
-  "id": "w3-reel-mistakes",
-  "at": "2026-11-23T21:00:00Z",
-  "type": "REELS",
-  "approved": true,
-  "media": [
-   "social/ig/w3/reel-mistakes.mp4"
-  ],
-  "caption": "3 caption mistakes that make people scroll 👀\n\nWhich one are you making? Tell me below 👇\n\nFix them free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles",
-  "music": "trending"
- },
- {
-  "id": "w3-story-mistakes",
-  "at": "2026-11-23T21:00:00Z",
-  "type": "STORY",
-  "approved": true,
-  "after": "w3-reel-mistakes",
-  "media": [
-   "social/ig/w3/reel-mistakes.mp4"
-  ]
- },
- {
   "id": "w3-carousel-details",
   "at": "2026-11-24T21:00:00Z",
   "type": "CAROUSEL",
@@ -112,6 +44,110 @@
   "after": "w3-carousel-details",
   "media": [
    "social/ig/w3/carousel-d-4.jpg"
+  ]
+ },
+ {
+  "id": "w3-reel-steps",
+  "at": "2026-11-25T21:00:00Z",
+  "type": "REELS",
+  "approved": true,
+  "media": [
+   "social/ig/w3/reel-how.mp4"
+  ],
+  "caption": "Captions in 3 steps ✨\n\n1. Drop your video\n2. AI writes the captions (in your browser, nothing is uploaded)\n3. Pick a style and export\n\nFree, no sign-up: wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles",
+  "music": "trending"
+ },
+ {
+  "id": "w3-story-steps",
+  "at": "2026-11-25T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-reel-steps",
+  "media": [
+   "social/ig/w3/reel-how.mp4"
+  ]
+ },
+ {
+  "id": "w3-carousel-styles",
+  "at": "2026-11-26T21:00:00Z",
+  "type": "CAROUSEL",
+  "approved": true,
+  "media": [
+   "social/ig/w3/carousel-c-1.jpg",
+   "social/ig/w3/carousel-c-2.jpg",
+   "social/ig/w3/carousel-c-3.jpg",
+   "social/ig/w3/carousel-c-4.jpg",
+   "social/ig/w3/carousel-c-5.jpg",
+   "social/ig/w3/carousel-c-6.jpg",
+   "social/ig/w3/carousel-c-7.jpg"
+  ],
+  "caption": "Which caption style fits your video? 👇\n\nPop: talking-head Reels\nBox: bright or busy backgrounds\nKaraoke: podcast clips and storytelling\nClean: tutorials and business\nNeon: gaming and night shots\n\nComment the style you'd pick 💬\nTry all 5 free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles"
+ },
+ {
+  "id": "w3-story-styles",
+  "at": "2026-11-26T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-carousel-styles",
+  "media": [
+   "social/ig/w3/carousel-c-1.jpg"
+  ]
+ },
+ {
+  "id": "w4-story-soon",
+  "at": "2026-11-26T22:00:00Z",
+  "type": "STORY",
+  "approved": false,
+  "media": [
+   "social/ig/w4/story-soon-1.jpg"
+  ]
+ },
+ {
+  "id": "w3-reel-mistakes",
+  "at": "2026-11-27T21:00:00Z",
+  "type": "REELS",
+  "approved": true,
+  "media": [
+   "social/ig/w3/reel-mistakes.mp4"
+  ],
+  "caption": "3 caption mistakes that make people scroll 👀\n\nWhich one are you making? Tell me below 👇\n\nFix them free at wordflare.app (link in bio)\n\n#captions #reelstips #contentcreator #videoediting #subtitles",
+  "music": "trending"
+ },
+ {
+  "id": "w3-story-mistakes",
+  "at": "2026-11-27T21:00:00Z",
+  "type": "STORY",
+  "approved": true,
+  "after": "w3-reel-mistakes",
+  "media": [
+   "social/ig/w3/reel-mistakes.mp4"
+  ]
+ },
+ {
+  "id": "w4-story-tips2",
+  "at": "2026-11-28T22:00:00Z",
+  "type": "STORY",
+  "approved": false,
+  "media": [
+   "social/ig/w4/story-tips-2.jpg"
+  ]
+ },
+ {
+  "id": "w4-story-faq-free",
+  "at": "2026-11-29T22:00:00Z",
+  "type": "STORY",
+  "approved": false,
+  "media": [
+   "social/ig/w4/story-faq-1.jpg"
+  ]
+ },
+ {
+  "id": "w4-story-faq-langs",
+  "at": "2026-11-30T22:00:00Z",
+  "type": "STORY",
+  "approved": false,
+  "media": [
+   "social/ig/w4/story-faq-3.jpg"
   ]
  }
 ]

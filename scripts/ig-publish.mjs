@@ -176,8 +176,8 @@ let ig;
 try { ig = await igUserId(); }
 catch (e) {
   const prev = state._account_error;
-  state._account_error = { message: e.message, since: prev?.message === e.message ? prev.since : NOW.toISOString(), last_seen: NOW.toISOString() };
-  saveState();
+  // only write when the error changes, so a long outage doesn't add a commit every hour
+  if (prev?.message !== e.message) { state._account_error = { message: e.message, since: NOW.toISOString() }; saveState(); }
   console.error(`ACCOUNT ERROR (not posting, will retry next run): ${e.message}`);
   process.exit(0);
 }
