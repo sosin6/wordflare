@@ -97,7 +97,7 @@
   "id": "w4-story-soon",
   "at": "2026-11-26T22:00:00Z",
   "type": "STORY",
-  "approved": false,
+  "approved": true,
   "media": [
    "social/ig/w4/story-soon-1.jpg"
   ]
@@ -127,7 +127,7 @@
   "id": "w4-story-tips2",
   "at": "2026-11-28T22:00:00Z",
   "type": "STORY",
-  "approved": false,
+  "approved": true,
   "media": [
    "social/ig/w4/story-tips-2.jpg"
   ]
@@ -136,7 +136,7 @@
   "id": "w4-story-faq-free",
   "at": "2026-11-29T22:00:00Z",
   "type": "STORY",
-  "approved": false,
+  "approved": true,
   "media": [
    "social/ig/w4/story-faq-1.jpg"
   ]
@@ -145,7 +145,7 @@
   "id": "w4-story-faq-langs",
   "at": "2026-11-30T22:00:00Z",
   "type": "STORY",
-  "approved": false,
+  "approved": true,
   "media": [
    "social/ig/w4/story-faq-3.jpg"
   ]
