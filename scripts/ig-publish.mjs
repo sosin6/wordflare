@@ -37,6 +37,18 @@ const queue = JSON.parse(readFileSync(QUEUE, 'utf8'));
 const state = existsSync(STATE) ? JSON.parse(readFileSync(STATE, 'utf8')) : {};
 const saveState = () => writeFileSync(STATE, JSON.stringify(state, null, 2) + '\n');
 
+// Width/height of a local JPEG (SOF marker) or null.
+function jpegSize(file) {
+  const b = readFileSync(file); let i = 2;
+  while (i < b.length) {
+    if (b[i] !== 0xFF) { i++; continue; }
+    const m = b[i + 1], len = b.readUInt16BE(i + 2);
+    if (m >= 0xC0 && m <= 0xCF && ![0xC4, 0xC8, 0xCC].includes(m)) return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+    i += 2 + len;
+  }
+  return null;
+}
+
 function validate() {
   const ids = new Set(); const errs = [];
   for (const it of queue) {
@@ -48,6 +60,11 @@ function validate() {
     for (const m of it.media || []) {
       if (!existsSync(path.join(ROOT, 'public', m))) errs.push(`${tag}: missing public/${m}`);
       if (!isVideo(m) && !/\.jpe?g$/i.test(m)) errs.push(`${tag}: images must be JPEG (${m})`);
+      // Stories are full-screen 9:16: anything else gets zoomed and cropped by Instagram.
+      if (it.type === 'STORY' && !isVideo(m) && existsSync(path.join(ROOT, 'public', m))) {
+        const d = jpegSize(path.join(ROOT, 'public', m));
+        if (d && Math.abs(d.w / d.h - 9 / 16) > 0.01) errs.push(`${tag}: story image must be 9:16 (1080x1920), got ${d.w}x${d.h} — make a story version`);
+      }
     }
     if (it.type === 'CAROUSEL' && (it.media.length < 2 || it.media.length > 10)) errs.push(`${tag}: carousel needs 2-10 items`);
     if (it.type === 'REELS' && !isVideo(it.media[0])) errs.push(`${tag}: reel needs a video`);
@@ -123,7 +140,14 @@ async function publish(ig, it) {
         music = await pickAudio(ig, it);
         const conf = { audio_id: music.audio_id, audio_volume: it.music_volume ?? 100, video_volume: it.video_volume ?? 0 };
         cid = (await g('POST', `/${ig}/media`, { ...base, audio_configuration: JSON.stringify(conf) })).id;
-      } catch (e) { music_error = e.message; music = null; console.error(`music skipped for ${it.id}: ${e.message}`); }
+      } catch (e) {
+        // The owner wants Reels with music: wait for the next hourly run instead of posting a silent Reel.
+        // Only after ~6 failed hours does it go out without music (so a post is not lost forever).
+        const mt = (state[it.id]?.music_tries || 0) + 1;
+        state[it.id] = { ...(state[it.id] || {}), music_tries: mt, music_error: e.message };
+        if (mt < 6) { const err = new Error(`music not available yet (${mt}/6): ${e.message}`); err.retryLater = true; throw err; }
+        music_error = e.message; music = null; console.error(`music skipped for ${it.id} after ${mt} tries: ${e.message}`);
+      }
     }
     if (!cid) cid = (await g('POST', `/${ig}/media`, base)).id;
   } else if (it.type === 'IMAGE') {
@@ -193,6 +217,7 @@ for (const it of due) {
     console.log(`published ${it.id} ${r.permalink || r.media_id}`);
     feed ? feedLeft-- : storiesLeft--;
   } catch (e) {
+    if (e.retryLater) { console.error(`WAITING ${it.id}: ${e.message}`); saveState(); if (feed) feedLeft--; continue; }
     failed++; state[it.id] = { ...(state[it.id] || {}), last_error: e.message, tries: (state[it.id]?.tries || 0) + 1, failed_at: new Date().toISOString() };
     console.error(`FAILED ${it.id}: ${e.message}`);
     if (feed) feedLeft--;
